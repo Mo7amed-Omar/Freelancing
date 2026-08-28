@@ -167,26 +167,20 @@ function renderPestGrid() {
 
   pestsData.forEach(pest => {
     const name = currentLang === "ar" ? pest.nameAr : pest.nameEn;
-    const teaser = currentLang === "ar" ? pest.teaserAr : pest.teaserEn;
-    const btnText = currentLang === "ar" ? translations.ar.btnMore : translations.en.btnMore;
     const imgUrl = unsplashImages[pest.id] || "images/logo.png";
 
-    const card = document.createElement("article");
-    card.className = "pest-card";
+    const card = document.createElement("a");
+    card.href = `pest.html?id=${pest.id}`;
+    card.className = "pest-card-premium";
     card.innerHTML = `
-      <div class="pest-image-container">
-        <img src="${imgUrl}" alt="${name}" loading="lazy">
-        <div class="pest-icon-badge">
-          ${pestIcons[pest.id] || ''}
+      <div class="speech-bubble-wrapper">
+        <div class="bubble-frame">
+          <img src="${imgUrl}" alt="${name}" loading="lazy">
         </div>
+        <div class="bubble-tail"></div>
       </div>
-      <div class="pest-card-body">
-        <h3>${name}</h3>
-        <p>${teaser}</p>
-        <a href="pest.html?id=${pest.id}" class="pest-card-btn">
-          <span>${btnText}</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+      <div class="pest-title-pill">
+        <span>${name}</span>
       </div>
     `;
     grid.appendChild(card);
@@ -349,37 +343,361 @@ function initPestDetailPage() {
     pestImg.alt = name;
   }
 
-  const pestCauseText = document.getElementById("pestDetailCause");
-  if (pestCauseText) {
-    pestCauseText.innerHTML = cause.split(/\.\s+/).filter(Boolean).map(paragraph => `<p>${paragraph.replace(/[.]$/, ".")}</p>`).join("");
-  }
+  const warningSignsAr = {
+    bedbug: [
+      "ظهور بقع دم صغيرة داكنة على الملاءات أو الوسائد.",
+      "وجود لدغات حمراء متكررة ومسببة للحكة الشديدة على الجسم صباحاً.",
+      "رؤية حشرات دقيقة بنية اللون في ثنايا المراتب والشقوق.",
+      "انبعاث رائحة رطبة غير مألوفة في الغرفة."
+    ],
+    cockroach: [
+      "رؤية صراصير صغيرة تنشط ليلاً في المطبخ أو الحمام.",
+      "ظهور فضلات صغيرة تشبه حبيبات الفلفل الأسود في الأدراج.",
+      "وجود أكياس بيض صراصير كامنة خلف الأجهزة والشقوق.",
+      "انتشار روائح غير مستحبة في الخزائن والأماكن المغلقة."
+    ],
+    ticks: [
+      "ملاحظة لدغات مفاجئة مسببة للتهيج الجلدي الشديد.",
+      "التصاق حشرات صغيرة داكنة بجلد الحيوانات الأليفة.",
+      "ظهور أعراض الإرثيميا الحلقية حول موضع اللدغات.",
+      "نشاط زائد للقراد في السجاد أو ثنايا الأثاث."
+    ],
+    termite: [
+      "ظهور أنفاق طينية دقيقة على الجدران والأخشاب.",
+      "وجود برادة خشب ناعمة متراكمة أسفل الأثاث والباركيه.",
+      "سماع صوت تجويف أو طقطقة عند النقر على الهياكل الخشبية.",
+      "تلف الأبواب الخشبية وصعوبة فتحها بسبب انتفاخ الخشب."
+    ],
+    rodents: [
+      "سماع أصوات خربشة في الأسقف أو الجدران ليلاً.",
+      "رؤية فضلات داكنة صغيرة مبعثرة قرب مصادر الغذاء.",
+      "وجود آثار قضم على الأسلاك الكهربائية أو الأكياس والكرتون.",
+      "انبعاث روائح كريهة جداً من خلف الجدران والأماكن المهجورة."
+    ],
+    woodborer: [
+      "رؤية ثقوب دقيقة جداً منتشرة على أسطح الأثاث الخشبي.",
+      "تساقط مستمر لغبار الخشب الناعم (النشارة) أسفل القطع المصابة.",
+      "سماع صوت نخر طفيف جداً في الأخشاب وقت السكون.",
+      "ضعف وتهشم مفاجئ في الهياكل الخشبية."
+    ],
+    geckos: [
+      "رؤية أبراص تتجول على الجدران والأسقف قرب الإضاءة.",
+      "وجود فضلات داكنة بنهاية بيضاء على الجدران والأرضيات.",
+      "سماع أصوات تكتكة طفيفة في الأسقف والشقوق.",
+      "زيادة مفاجئة في عدد الحشرات الطائرة بالمكان (طعام الأبراص)."
+    ],
+    moths: [
+      "ظهور ثقوب دقيقة غير مبررة في الملابس الصوفية والمنسوجات.",
+      "رؤية يرقات زاحفة دقيقة بيضاء في الخزائن المظلمة.",
+      "تطاير فراشات صغيرة باهتة اللون داخل الغرف عند الإضاءة.",
+      "تلف وتآكل ألياف السجاد الفاخر والمفروشات المخزنة."
+    ],
+    woodbeetle: [
+      "تلف واضح ونخر عميق في الهياكل الخشبية الصلبة.",
+      "ظهور يرقات نشطة تنخر داخل قطع الأثاث الكلاسيكي.",
+      "وجود فتحات دائرية الشكل يخرج منها غبار الخشب.",
+      "تدهور جودة الأبواب والباركيه المعرض للرطوبة."
+    ]
+  };
 
-  const pestTreatmentText = document.getElementById("pestDetailTreatment");
-  if (pestTreatmentText) {
-    const steps = treatment.split(": ");
-    if (steps.length > 1) {
-      let formattedText = "";
-      steps.forEach((step, i) => {
-        if (i === 0) {
-          formattedText += `<p style="font-weight: 700; margin-bottom: 16px; color: var(--primary);">${step}:</p><ol class="detail-steps-list">`;
-        } else {
-          const cleanStep = step.replace(/ثانياً،|ثالثاً،|رابعاً،|أولاً،/g, "").trim();
-          formattedText += `<li>${cleanStep}</li>`;
-        }
-      });
-      formattedText += "</ol>";
-      pestTreatmentText.innerHTML = formattedText;
-    } else {
-      pestTreatmentText.innerHTML = treatment.split(/\.\s+/).filter(Boolean).map(paragraph => `<p>${paragraph.replace(/[.]$/, ".")}</p>`).join("");
-    }
-  }
+  const warningSignsEn = {
+    bedbug: [
+      "Appearance of small dark blood spots on sheets or pillows.",
+      "Frequent red itchy bites on the body in the morning.",
+      "Seeing tiny brown insects in mattress folds and cracks.",
+      "Unfamiliar musty smell emanating in the room."
+    ],
+    cockroach: [
+      "Seeing small cockroaches active at night in the kitchen or bathroom.",
+      "Appearance of tiny pepper-like droppings in drawers.",
+      "Presence of cockroach egg cases behind appliances.",
+      "Unpleasant odors in closed cabinets and cupboards."
+    ],
+    ticks: [
+      "Sudden bites causing severe skin irritation.",
+      "Small dark insects attached to pets' skin.",
+      "Red rings appearing around bite sites.",
+      "Increased tick activity in carpets or upholstery."
+    ],
+    termite: [
+      "Tiny mud tubes appearing on walls and wooden structures.",
+      "Fine wood dust accumulating below furniture and parquet.",
+      "Hollow sounds when tapping wooden doors or frames.",
+      "Difficulty opening wooden doors due to wood swelling."
+    ],
+    rodents: [
+      "Scratching sounds in ceilings or walls at night.",
+      "Scattered tiny dark droppings near food sources.",
+      "Gnaw marks on electric wires, bags, or cardboard boxes.",
+      "Foul odors coming from behind walls."
+    ],
+    woodborer: [
+      "Tiny holes spread on wooden furniture surfaces.",
+      "Fine wood dust falling continuously below infected parts.",
+      "Faint wood-chewing sounds during quiet hours.",
+      "Sudden weakening of wooden structures."
+    ],
+    geckos: [
+      "Seeing geckos roaming on walls near lights.",
+      "Dark droppings with white tips on walls and floors.",
+      "Faint clicking noises in ceilings and cracks.",
+      "Sudden increase in flying insects (geckos' food source)."
+    ],
+    moths: [
+      "Unexplained tiny holes in woolen clothes and textiles.",
+      "Tiny white crawling larvae inside dark wardrobes.",
+      "Small pale moths flying inside rooms when lights are on.",
+      "Frayed fibers on luxury rugs and carpets."
+    ],
+    woodbeetle: [
+      "Deep wood decay in solid hardwood frames.",
+      "Active larvae burrowing inside classic furniture pieces.",
+      "Round exit holes showing fine wood dust.",
+      "Deterioration of parquet floors exposed to humidity."
+    ]
+  };
 
-  const pestIconBox = document.getElementById("pestDetailIconBox");
-  if (pestIconBox) {
-    pestIconBox.innerHTML = pestIcons[pest.id] || "";
-    pestIconBox.style.color = "var(--brand-green)";
+  const pestFaqsAr = {
+    bedbug: [
+      { q: "هل يمكن القضاء على بق الفراش نهائيًا؟", a: "نعم، بروتوكول الرش الكيميائي المزدوج وتتبع الجحور يقضي عليه نهائياً مع تقديم ضمان مكتوب للمتابعة." },
+      { q: "هل يجب التخلص من المراتب المصابة؟", a: "بالتأكيد لا. مبيداتنا قادرة على التغلغل لعمق المراتب وقتل الأطوار بالكامل دون الحاجة لإتلافها." },
+      { q: "كم زيارة يتطلبها العلاج؟", a: "يحتاج بق الفراش عادةً إلى زيارة معالجة تليها زيارة متابعة بعد 14 يوماً لقطع دورة حياة البيض الجديد." }
+    ],
+    cockroach: [
+      { q: "هل الرش آمن على الأطفال والحيوانات الأليفة؟", a: "نعم، نستخدم مبيدات صحة عامة مسجلة بوزارة الصحة بدون رائحة أو غازات سامة، ولا تتطلب مغادرة المنزل." },
+      { q: "لماذا تظهر الصراصير بعد الرش بأيام؟", a: "هذا طبيعي ويسمى بنشاط الخروج، حيث يدفعها المبيد لمغادرة جحورها والموت سريعاً خلال 48 ساعة." },
+      { q: "كيف نمنع عودتها للمطبخ؟", a: "ننصح بسد شقوق السيراميك، وإصلاح تسريبات المياه تحت الحوض، وعدم ترك القمامة مكشوفة ليلاً." }
+    ],
+    ticks: [
+      { q: "هل يعالج القراد في المنزل والحديقة معاً؟", a: "نعم، نقوم برش المسطحات الخضراء والحديقة بمواد متخصصة بالإضافة لمعالجة أركان المنزل الداخلية." },
+      { q: "هل الرش آمن على الكلاب والقطط؟", a: "نعم، لكن يجب إبعاد الحيوانات وقت الرش حتى يجف تماماً لضمان سلامتها الكاملة." },
+      { q: "كم يستغرق ظهور النتيجة؟", a: "يموت القراد النشط فوراً بعد الرش، وتظهر الفعالية الكاملة في القضاء التام خلال 24 إلى 48 ساعة." }
+    ],
+    termite: [
+      { q: "كم تصل مدة ضمان النمل الأبيض؟", a: "نوفر ضماناً رسمياً مكتوباً يصل إلى 10 سنوات للشقق المعالجة و15 سنة للتربة والمنشآت تحت الإنشاء." },
+      { q: "هل يحتاج العلاج إلى تكسير الباركيه؟", a: "لا، نستخدم تقنية الحقن الدقيق بفتحات مخفية لحقن المبيد مباشرة تحت الأرضيات دون إتلافها." },
+      { q: "ما هي المواد المستخدمة؟", a: "نستخدم مبيدات مخصصة لمقاومة النمل الأبيض ذات أثر باقٍ طويل الأمد ومقاومة لغسيل المياه." }
+    ],
+    rodents: [
+      { q: "هل تستخدمون سموماً تشكل خطراً على الأطفال؟", a: "لا، نضع الطعوم والسموم في محطات مغلقة وآمنة (bait stations) لا يمكن للأطفال أو الحيوانات العبث بها." },
+      { q: "هل تموت الفئران داخل المنزل وتسبب روائح؟", a: "نستخدم طعوماً حديثة تجفف السوائل بجسم الفأر وتدفعه للبحث عن الهواء الخارجي والموت خارج المنزل تماماً." },
+      { q: "كيف نضمن عدم دخول فئران جديدة؟", a: "يقوم فريقنا بتشخيص فتحات الدخول ووضع حواجز معدنية (سد المنافذ) لمنعها من التسلل مجدداً." }
+    ],
+    woodborer: [
+      { q: "هل السوس ينتقل لبقية الأثاث؟", a: "نعم، الحشرات البالغة تطير وتضع بيضها في الأخشاب المجاورة، لذا يجب معالجة الإصابة سريعاً." },
+      { q: "كيف تتم معالجة الأخشاب المصابة؟", a: "عن طريق الحقن المباشر للثقوب بمواد بترولية تغلغلية تقتل اليرقات في عمق الخشب." },
+      { q: "هل يجب دهان الخشب بعد المعالجة؟", a: "نعم، ننصح بدهان مادة واقية عازلة لمنع الخنافس من وضع بيض جديد في مسام الخشب." }
+    ],
+    geckos: [
+      { q: "هل يمكن القضاء على الأبراص نهائياً؟", a: "نعم، برشنا للمواد الطاردة ومكافحة الحشرات الطائرة (غذاء البرص) يجبر الأبراص على الرحيل فوراً." },
+      { q: "هل الرش آمن للأطفال؟", a: "يتم استخدام مبيدات صحة عامة معتمدة وآمنة تماماً عند تطبيقها من قبل فريقنا المختص." },
+      { q: "كم يستغرق القضاء عليها؟", a: "تظهر النتيجة في انخفاض فوري وملاحظ خلال أيام قليلة من المعالجة الأولى." }
+    ],
+    moths: [
+      { q: "هل يجب غسل الملابس بعد المعالجة؟", a: "مبيداتنا لا تترك بقعاً أو روائح، ولكن غسل الملابس المصابة بالماء الساخن يدعم قتل بيض العتة تماماً." },
+      { q: "كيف تقضون على بيض العتة؟", a: "نستخدم التبخير والرش الدقيق المعقم للخزائن لقطع السلسلة البيولوجية لليرقات." },
+      { q: "ما هي طرق الوقاية منها؟", a: "التهوية الدورية للخزائن، تعريض المفروشات للشمس، ووضع مصائد الفيرمونات الواقية." }
+    ],
+    woodbeetle: [
+      { q: "كيف يتم اكتشاف حفار الخشب؟", a: "عن طريق سماع أصوات نخر خفيفة ليلاً ورؤية نشارة ناعمة جداً تسقط من قطع الأثاث." },
+      { q: "هل علاج حفار الخشب فعال بنسبة 100%؟", a: "نعم، بروتوكول الحقن والدهان يقضي على الأطوار داخل الخشب ويسد ثقوب الخروج تماماً." },
+      { q: "هل يؤثر العلاج على لون الخشب؟", a: "لا، المواد المستخدمة زيتية شفافة لا تغير لون الدهان أو مظهر الخشب على الإطلاق." }
+    ]
+  };
+
+  const pestFaqsEn = {
+    bedbug: [
+      { q: "Can bedbugs be eliminated permanently?", a: "Yes, our double chemical treatment protocol targets nesting sites to eliminate them fully with a written warranty." },
+      { q: "Should I throw away infected mattresses?", a: "Absolutely not. Our specialized pesticides penetrate deep inside mattresses to kill all stages without damage." },
+      { q: "How many visits are required?", a: "Bedbugs usually require a treatment visit followed by a follow-up visit after 14 days to break the egg cycle." }
+    ],
+    cockroach: [
+      { q: "Is the spraying safe for children and pets?", a: "Yes, we use odorless public health pesticides registered with the Ministry of Health that don't require leaving the house." },
+      { q: "Why do cockroaches appear after spraying?", a: "This is normal flushing activity. The pesticide forces them to leave nests and die within 48 hours." },
+      { q: "How do we prevent their return?", a: "We advise sealing ceramic gaps, fixing water leaks, and keeping garbage bins tightly closed." }
+    ],
+    ticks: [
+      { q: "Do you treat ticks in both home and garden?", a: "Yes, we spray lawns with targeted products and treat internal home corners." },
+      { q: "Is the spray safe for dogs and cats?", a: "Yes, but pets must be kept away during spraying until it dries completely." },
+      { q: "How long does it take to see results?", a: "Active ticks die instantly, and full elimination is achieved within 24 to 48 hours." }
+    ],
+    termite: [
+      { q: "How long is the termite warranty?", a: "We offer an official written warranty up to 10 years for treated apartments and 15 years for pre-construction soil." },
+      { q: "Does the treatment require damaging parquet?", a: "No, we use precision injection through hidden holes to inject pesticide beneath flooring without damage." },
+      { q: "What materials are used?", a: "We use long-lasting termiticides resistant to water leaching." }
+    ],
+    rodents: [
+      { q: "Do you use poisons that threaten children?", a: "No, bait stations are locked and secure, preventing child or pet tampering." },
+      { q: "Will rodents die inside and cause bad odors?", a: "We use modern bait that dehydrates rodents and drives them to seek outdoor air, dying outside." },
+      { q: "How do we prevent new rodents from entering?", a: "Our team seals entry points with wire mesh to prevent them from crawling back." }
+    ],
+    woodborer: [
+      { q: "Does woodborer spread to other furniture?", a: "Yes, adult beetles fly and lay eggs in nearby wood, so early treatment is crucial." },
+      { q: "How is infected wood treated?", a: "By direct injection into exit holes with highly penetrative petroleum-based products." },
+      { q: "Should wood be painted after treatment?", a: "Yes, we recommend applying a sealant to prevent beetles from laying new eggs in wood pores." }
+    ],
+    geckos: [
+      { q: "Can geckos be eliminated permanently?", a: "Yes, spraying repellents and controlling flying insects (their food source) forces geckos to leave." },
+      { q: "Is the spraying safe for kids?", a: "Yes, we apply approved public health pesticides that are safe under professional execution." },
+      { q: "How fast will geckos disappear?", a: "A noticeable decrease is seen within a few days of the initial treatment." }
+    ],
+    moths: [
+      { q: "Should clothes be washed after treatment?", a: "Our pesticides are clean and stainless, but washing infected clothes in hot water supports killing eggs." },
+      { q: "How do you destroy moth eggs?", a: "We use precision steaming and wardrobe sterilization to break the lifecycle." },
+      { q: "What are the best prevention tips?", a: "Periodic wardrobe airing, sun exposure for carpets, and using pheromone traps." }
+    ],
+    woodbeetle: [
+      { q: "How do we detect wood boring beetles?", a: "By hearing chewing noises at night and seeing fine wood dust falling from furniture." },
+      { q: "Is the treatment 100% effective?", a: "Yes, our injection and coating protocol eliminates larvae and seals exit holes fully." },
+      { q: "Does treatment affect wood color?", a: "No, our transparent oil-based products preserve wood finish completely." }
+    ]
+  };
+
+  const pestWarning = (currentLang === "ar" ? warningSignsAr[pest.id] : warningSignsEn[pest.id]) || [];
+  const pestFaq = (currentLang === "ar" ? pestFaqsAr[pest.id] : pestFaqsEn[pest.id]) || [];
+
+  const infoContainer = document.querySelector(".pest-detail-info");
+  if (infoContainer) {
+    let warningItemsHtml = pestWarning.map(item => `<li><span class="warning-bullet">!</span> <span>${item}</span></li>`).join("");
+    
+    let faqItemsHtml = pestFaq.map((faq, idx) => `
+      <div class="pest-faq-item">
+        <button class="pest-faq-btn" onclick="togglePestFaq(${idx})">
+          <span>${faq.q}</span>
+          <span class="faq-icon-arrow">+</span>
+        </button>
+        <div class="pest-faq-panel" id="pestFaqPanel-${idx}">
+          <p>${faq.a}</p>
+        </div>
+      </div>
+    `).join("");
+
+    const isAr = currentLang === "ar";
+
+    infoContainer.innerHTML = `
+      <!-- 1. أسباب الظهور -->
+      <div class="detail-block">
+        <div class="detail-heading">
+          <div class="detail-icon" id="pestDetailIconBox" aria-hidden="true">${pestIcons[pest.id] || ''}</div>
+          <div>
+            <span class="detail-kicker">${isAr ? "افهم المشكلة" : "Understand the Issue"}</span>
+            <h2>${isAr ? "أسباب ظهور وانتشار الحشرة" : "Causes of Pest Spread"}</h2>
+          </div>
+        </div>
+        <div id="pestDetailCause" class="detail-copy">${cause.split(/\.\s+/).filter(Boolean).map(paragraph => `<p>${paragraph.replace(/[.]$/, ".")}</p>`).join("")}</div>
+      </div>
+
+      <!-- 2. أعراض تستدعي التدخل الفوري -->
+      <div class="detail-block warning-block">
+        <div class="detail-heading">
+          <div class="detail-icon warning-icon" aria-hidden="true">⚠</div>
+          <div>
+            <span class="detail-kicker">${isAr ? "انتبه للعلامات" : "Watch for Signs"}</span>
+            <h2>${isAr ? "أعراض تستدعي التدخل الفوري" : "Signs Requesting Immediate Intervention"}</h2>
+          </div>
+        </div>
+        <ul class="warning-signs-list">
+          ${warningItemsHtml}
+        </ul>
+        <p class="warning-alert-text">${isAr ? "التأخير في هذه الحالات قد يؤدي إلى انتشار أوسع يصعب السيطرة عليه بسرعة." : "Delay in these cases may lead to a wider infestation that is difficult to control quickly."}</p>
+      </div>
+
+      <!-- 3. دور الشركة الألمانية المتقدمة في الحل المتكامل -->
+      <div class="detail-block">
+        <div class="detail-heading">
+          <div class="detail-icon detail-icon-treatment" aria-hidden="true">✓</div>
+          <div>
+            <span class="detail-kicker">${isAr ? "بروتوكول المكافحة" : "Control Protocol"}</span>
+            <h2>${isAr ? "دور الشركة الألمانية المتقدمة في الحل المتكامل" : "German Company's Role in the Integrated Solution"}</h2>
+          </div>
+        </div>
+        <p>${isAr ? "عند الحاجة إلى تدخل احترافي، تقدم الشركة الألمانية المتقدمة لمكافحة الحشرات خطة عملية مبنية على تقييم ميداني دقيق." : "When professional intervention is needed, the Advanced German Pest Control Company offers a practical plan based on accurate field assessment."}</p>
+        
+        <div class="treatment-features-grid">
+          <div class="feat-card">
+            <span class="feat-num">01</span>
+            <h4>${isAr ? "فحص شامل للموقع" : "Thorough Inspection"}</h4>
+            <p>${isAr ? "معاينة الجحور والمنافذ التي تتسلل منها الحشرات." : "Inspecting entry points where pests infiltrate."}</p>
+          </div>
+          <div class="feat-card">
+            <span class="feat-num">02</span>
+            <h4>${isAr ? "تحديد مصادر التكاثر" : "Breeding Source Elimination"}</h4>
+            <p>${isAr ? "القضاء على بؤر وضع البيض واليرقات لضمان عدم عودتها." : "Eliminating egg-laying sites and larvae to prevent return."}</p>
+          </div>
+          <div class="feat-card">
+            <span class="feat-num">03</span>
+            <h4>${isAr ? "مواد معتمدة وآمنة" : "Safe & Certified Materials"}</h4>
+            <p>${isAr ? "مبيدات صحة عامة مسجلة بالكامل وبدون روائح كريهة." : "Fully registered public health pesticides with no bad odors."}</p>
+          </div>
+          <div class="feat-card">
+            <span class="feat-num">04</span>
+            <h4>${isAr ? "خطة وقائية مستمرة" : "Preventive Maintenance"}</h4>
+            <p>${isAr ? "برنامج متابعة دوري وضمان مكتوب حسب طبيعة العقار." : "Periodic follow-up program and written warranty."}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. نداء اتخاذ القرار والاتصال الفوري -->
+      <div class="detail-actions-box">
+        <p>${isAr ? "يتم تحديد موعد سريع للمعاينة ووضع خطة مناسبة لطبيعة المنزل أو الفيلا." : "A quick inspection appointment is set to establish a plan suitable for your home or villa."}</p>
+        <div class="hero-actions" style="margin-bottom: 0;">
+          <a href="https://wa.me/201150087555?text=مرحباً، أريد الاستفسار عن خدمة مكافحة الحشرات" target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9.8 9.4 8.4 9.1 7.8c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.8 14.7 3.3 13.4 3.3 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.9 8.7-8.7 8.7z"/></svg>
+            <span>${isAr ? "واتساب فوري" : "Instant WhatsApp"}</span>
+          </a>
+          <a href="tel:01150087555" class="btn btn-call">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>${isAr ? "اتصل الآن: 01150087555" : "Call Now: 01150087555"}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. الأسئلة الشائعة الخاصة بالحشرة -->
+      <div class="detail-block">
+        <div class="detail-heading">
+          <div class="detail-icon" aria-hidden="true">?</div>
+          <div>
+            <span class="detail-kicker">${isAr ? "إجابات سريعة" : "Quick Answers"}</span>
+            <h2>${isAr ? `أسئلة شائعة حول مكافحة ${name}` : `FAQs about ${name} Control`}</h2>
+          </div>
+        </div>
+        <div class="pest-faq-accordion">
+          ${faqItemsHtml}
+        </div>
+      </div>
+
+      <!-- 6. الخاتمة ونصيحة الخبير -->
+      <div class="detail-block conclusion-block">
+        <h3>${isAr ? "نصيحة الخبير للوقاية المستمرة" : "Expert Advice for Ongoing Prevention"}</h3>
+        <p>${isAr ? "إزعاج الحشرات ليس أمراً بسيطاً يمكن تجاهله، بل مؤشر على خلل بيئي صغير قد يتطور سريعاً. الحل الفعلي يبدأ بتحديد المصدر، ثم المعالجة الصحيحة، وأخيراً الوقاية المستمرة." : "Pest annoyance is not a simple matter to ignore; it is an indicator of a small environmental imbalance that can develop rapidly. The actual solution starts with identifying the source, then correct treatment, and finally continuous prevention."}</p>
+        <p>${isAr ? "إذا كنت تبحث عن راحة نوم حقيقية وبيئة آمنة لأسرتك داخل المنزل والحديقة، فالتواصل مع فريق متخصص هو الخطوة العملية التي تحميك من تكرار المشكلة." : "If you are looking for true sleeping comfort and a safe environment for your family in your home and garden, contacting a specialized team is the practical step that protects you from recurrence."}</p>
+      </div>
+
+      <!-- 7. مقر الشركة -->
+      <div class="pest-location-info">
+        <p>📍 <strong>${isAr ? "مقر الشركة الأساسي:" : "Main Company Office:"}</strong> ${isAr ? "مصر الجديدة، القاهرة، مصر" : "Heliopolis, Cairo, Egypt"}</p>
+      </div>
+    `;
   }
 }
+
+// دالة التحكم في الأكورديون للآفات
+function togglePestFaq(idx) {
+  const panel = document.getElementById(`pestFaqPanel-${idx}`);
+  const btn = panel.previousElementSibling;
+  const arrow = btn.querySelector(".faq-icon-arrow");
+  
+  if (panel.style.maxHeight) {
+    panel.style.maxHeight = null;
+    arrow.textContent = "+";
+    btn.classList.remove("active");
+  } else {
+    panel.style.maxHeight = panel.scrollHeight + "px";
+    arrow.textContent = "-";
+    btn.classList.add("active");
+  }
+}
+window.togglePestFaq = togglePestFaq;
 
 // 8. تفعيل نموذج التواصل في صفحة اتصل بنا
 function initContactForm() {
