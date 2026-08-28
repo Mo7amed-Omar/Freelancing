@@ -616,27 +616,24 @@ button {
 .why-marquee-container {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding-block: 45px 30px;
   direction: ltr; /* Force LTR layout for animation stability across languages */
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marqueeStopAndGo 15s ease-in-out infinite;
-}
-
-/* Pause on hover */
-.why-marquee-container:hover .marquee-track {
-  animation-play-state: paused;
 }
 
 .marquee-group {
   display: flex;
   align-items: flex-start;
   gap: 40px;
-  padding-inline-end: 40px; /* Space between groups */
+  padding-inline: 24px;
 }
 
 .carousel-item {
@@ -645,6 +642,16 @@ button {
   align-items: center;
   width: 260px;
   flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.why-marquee-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.why-marquee-container::-webkit-scrollbar-thumb {
+  background: var(--brand-gold);
+  border-radius: 4px;
 }
 
 /* بالونات المحادثة (Speech Bubbles) */
@@ -742,15 +749,6 @@ html[lang="en"] .feature-pill,
   color: var(--primary);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(10, 25, 47, 0.12);
-}
-
-@keyframes marqueeStopAndGo {
-  0%, 16.6% { transform: translateX(-50%); }
-  20%, 36.6% { transform: translateX(-40%); }
-  40%, 56.6% { transform: translateX(-30%); }
-  60%, 76.6% { transform: translateX(-20%); }
-  80%, 96.6% { transform: translateX(-10%); }
-  100% { transform: translateX(0); }
 }
 
 /* ===== قسم أقسام الحشرات (Pest Categories) ===== */
@@ -1875,6 +1873,9 @@ html[lang="en"] .testimonial-card,
 @media (max-width: 768px) {
   body {
     padding-bottom: 60px;
+  }
+  .carousel-item {
+    width: calc(100vw - 63px);
   }
   .hero-actions .btn {
     width: 100%;
