@@ -54,10 +54,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // تفعيل نموذج تواصل صفحة الاتصال
   initContactForm();
 
+  // ===== NEW: Premium UI Enhancements =====
+  // Scroll reveal animations
+  initScrollReveal();
+
+  // Navbar scroll state
+  initNavbarScroll();
+
+  // Active nav link highlighting
+  initActiveNavLink();
+
   // تحديث سنة حقوق الفوتر تلقائياً
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
 
 function initFeatureCarousel() {
   const carousel = document.querySelector(".why-marquee-container");
@@ -286,30 +297,26 @@ function initHeroMist() {
 // 6. الأسئلة الشائعة الأكورديون (FAQ Accordion)
 function toggleFaq(idx) {
   const panels = document.querySelectorAll(".faq-answer-panel");
-  const icons = document.querySelectorAll(".faq-icon");
   const items = document.querySelectorAll(".faq-item");
   
   if (panels.length === 0) return;
 
   const activePanel = panels[idx];
-  const activeIcon = icons[idx];
   const activeItem = items[idx];
 
   // هل اللوحة مفتوحة حالياً؟
   const isOpen = activeItem.classList.contains("open");
 
-  // إغلاق جميع اللوحات الأخرى
+  // إغلاق جميع اللوحات الأخرى (CSS handles icon rotation via .faq-item.open .faq-icon)
   items.forEach((item, index) => {
     item.classList.remove("open");
     panels[index].style.maxHeight = null;
-    icons[index].textContent = "+";
   });
 
   // فتح أو إغلاق اللوحة الحالية
   if (!isOpen) {
     activeItem.classList.add("open");
     activePanel.style.maxHeight = activePanel.scrollHeight + "px";
-    activeIcon.textContent = "−";
   }
 }
 
@@ -923,29 +930,103 @@ function initMobileMenu() {
   const mainNav = document.querySelector(".main-nav");
   if (!menuToggle || !mainNav) return;
 
+  // Create backdrop overlay element
+  let backdrop = document.querySelector(".nav-backdrop");
+  if (!backdrop) {
+    backdrop = document.createElement("div");
+    backdrop.className = "nav-backdrop";
+    document.body.appendChild(backdrop);
+  }
+
+  function openMenu() {
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.classList.add("active");
+    mainNav.classList.add("active");
+    backdrop.classList.add("active");
+    document.body.classList.add("nav-open");
+  }
+
+  function closeMenu() {
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.classList.remove("active");
+    mainNav.classList.remove("active");
+    backdrop.classList.remove("active");
+    document.body.classList.remove("nav-open");
+  }
+
   menuToggle.addEventListener("click", () => {
-    const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-    menuToggle.setAttribute("aria-expanded", !isExpanded);
-    menuToggle.classList.toggle("active");
-    mainNav.classList.toggle("active");
+    mainNav.classList.contains("active") ? closeMenu() : openMenu();
   });
 
-  // إغلاق القائمة عند النقر خارجها
-  document.addEventListener("click", (e) => {
-    if (!menuToggle.contains(e.target) && !mainNav.contains(e.target)) {
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.classList.remove("active");
-      mainNav.classList.remove("active");
+  // Close on backdrop click
+  backdrop.addEventListener("click", closeMenu);
+
+  // Close on ESC key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mainNav.classList.contains("active")) {
+      closeMenu();
+      menuToggle.focus();
     }
   });
 
-  // إغلاق القائمة عند النقر على أي رابط تنقل
-  const navLinks = mainNav.querySelectorAll("a");
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.classList.remove("active");
-      mainNav.classList.remove("active");
+  // Close on nav link click
+  mainNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+}
+
+/* ==========================================================================
+   NEW: Premium UI Enhancement Functions
+   ========================================================================== */
+
+// Scroll Reveal — IntersectionObserver, fires once per element
+function initScrollReveal() {
+  if (typeof IntersectionObserver === "undefined") {
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("is-visible"));
+    return;
+  }
+
+  const revealEls = document.querySelectorAll(".reveal");
+  if (revealEls.length === 0) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target); // fire once only — better performance
+      }
     });
+  }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+  revealEls.forEach(el => observer.observe(el));
+}
+
+// Navbar Scroll State — smooth visual change on scroll
+function initNavbarScroll() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  const onScroll = () => {
+    header.classList.toggle("scrolled", window.scrollY > 60);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll(); // check on initial load
+}
+
+// Active Nav Link — marks current page link as active
+function initActiveNavLink() {
+  const currentFile = window.location.pathname.split("/").pop() || "index.html";
+  const currentHash = window.location.hash;
+
+  document.querySelectorAll(".main-nav a").forEach(link => {
+    const href = link.getAttribute("href") || "";
+    const linkFile = href.split("#")[0].split("/").pop();
+
+    if (linkFile === currentFile && !currentHash) {
+      link.classList.add("active");
+    } else if (currentHash && href === currentHash) {
+      link.classList.add("active");
+    }
   });
 }

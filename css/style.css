@@ -367,8 +367,8 @@ button {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 13px;
-  letter-spacing: 0.8px;
-  color: var(--brand-blue);
+  letter-spacing: 1px;
+  color: var(--brand-gold);
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -414,7 +414,29 @@ button {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 15.5px;
-  transition: var(--transition);
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:active {
+  transform: scale(0.97) translateY(0) !important;
+  transition-duration: 0.08s;
+}
+
+/* ===== Primary CTA Button ===== */
+.btn-primary {
+  background: var(--brand-gold);
+  color: var(--brand-navy);
+  box-shadow: 0 6px 20px rgba(197, 168, 128, 0.35);
+  font-weight: 800;
+}
+
+.btn-primary:hover {
+  background: var(--brand-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(197, 168, 128, 0.45);
+  color: var(--brand-navy);
 }
 
 .btn-whatsapp {
@@ -430,26 +452,35 @@ button {
 }
 
 .btn-call {
-  background: var(--brand-green);
-  color: #fff;
-  box-shadow: 0 6px 20px rgba(10, 25, 47, 0.25);
+  background: var(--brand-gold);
+  color: var(--brand-navy);
+  box-shadow: 0 6px 20px rgba(197, 168, 128, 0.25);
+  font-weight: 800;
 }
 
 .btn-call:hover {
-  background: var(--primary);
+  background: var(--brand-gold-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(10, 25, 47, 0.35);
+  box-shadow: 0 8px 24px rgba(197, 168, 128, 0.35);
 }
 
 .btn-secondary {
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   color: #fff;
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
+}
+
+/* Loading state */
+.btn--loading {
+  pointer-events: none;
+  opacity: 0.75;
+  cursor: wait;
 }
 
 .spec-plates {
@@ -475,7 +506,7 @@ button {
 .spec-plates strong {
   font-family: var(--font-display);
   font-weight: 800;
-  color: var(--brand-blue);
+  color: #fff;
   font-size: 17px;
 }
 
@@ -1211,9 +1242,11 @@ html[lang="en"] .testimonial-card,
 }
 
 .footer-col h4 {
-  color: var(--brand-blue);
-  font-size: 16px;
+  color: var(--brand-gold);
+  font-size: 15px;
   margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .footer-links {
@@ -1870,30 +1903,66 @@ html[lang="en"] .testimonial-card,
     position: relative;
   }
   .main-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: var(--brand-navy);
+    display: flex !important;
     flex-direction: column;
-    padding: 16px 24px;
-    border-bottom: 2px solid var(--brand-gold);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-    z-index: 999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(310px, 85vw);
+    height: 100dvh;
+    background: var(--brand-navy);
+    padding: 80px 24px 32px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: -6px 0 40px rgba(0, 0, 0, 0.35);
+    z-index: 998;
+    gap: 4px;
+    transform: translateX(100%);
+    transition: transform 0.32s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow-y: auto;
+  }
+  html[dir="ltr"] .main-nav {
+    right: auto;
+    left: 0;
+    border-left: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 6px 0 40px rgba(0, 0, 0, 0.35);
+    transform: translateX(-100%);
   }
   .main-nav.active {
-    display: flex !important;
+    transform: translateX(0) !important;
   }
   .main-nav a {
-    padding-block: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    color: #fff !important;
+    padding: 13px 16px;
+    border-radius: var(--radius-sm);
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 15.5px;
     width: 100%;
     margin: 0;
-  }
-  .main-nav a:last-child {
     border-bottom: none;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .main-nav a:hover,
+  .main-nav a.active {
+    background: rgba(197, 168, 128, 0.12);
+    color: var(--brand-gold) !important;
+  }
+  .main-nav a::after {
+    display: none;
+  }
+  /* Backdrop overlay */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 997;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.32s ease;
+    backdrop-filter: blur(2px);
+  }
+  .nav-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
   }
   .menu-toggle {
     display: block;
@@ -1902,6 +1971,7 @@ html[lang="en"] .testimonial-card,
     cursor: pointer;
     padding: 8px;
     z-index: 1000;
+    position: relative;
   }
   .menu-toggle span {
     display: block;
@@ -1909,13 +1979,15 @@ html[lang="en"] .testimonial-card,
     height: 2px;
     background-color: var(--brand-gold);
     margin-block: 5px;
-    transition: var(--transition);
+    transition: transform 0.28s ease, opacity 0.28s ease;
+    transform-origin: center;
   }
   .menu-toggle.active span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
   .menu-toggle.active span:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
   }
   .menu-toggle.active span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
@@ -2357,4 +2429,174 @@ html[lang="en"] .testimonial-card,
   padding: 16px 20px;
   font-size: 14px;
   color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   PREMIUM UI POLISH — Full UI/UX Upgrade Layer
+   ========================================================================== */
+
+/* ===== 1. Scroll Reveal System ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s cubic-bezier(0.25,0.8,0.25,1), transform 0.55s cubic-bezier(0.25,0.8,0.25,1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ===== 2. Hero Entrance Animations ===== */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero .eyebrow         { animation: heroFadeUp 0.65s cubic-bezier(0.25,0.8,0.25,1) 0.10s both; }
+.hero h1               { animation: heroFadeUp 0.65s cubic-bezier(0.25,0.8,0.25,1) 0.25s both; }
+.hero .hero-lead       { animation: heroFadeUp 0.65s cubic-bezier(0.25,0.8,0.25,1) 0.40s both; }
+.hero .hero-actions    { animation: heroFadeUp 0.65s cubic-bezier(0.25,0.8,0.25,1) 0.55s both; }
+.hero .hero-trust-indicators { animation: heroFadeUp 0.65s cubic-bezier(0.25,0.8,0.25,1) 0.70s both; }
+
+/* ===== 3. Navbar Scroll State ===== */
+.site-header {
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.site-header.scrolled {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 24px rgba(10,25,47,0.1);
+}
+.site-header.scrolled .header-inner {
+  padding-block: 8px;
+}
+
+/* ===== 4. Active Nav Link ===== */
+.main-nav a.active {
+  color: var(--brand-gold-dark) !important;
+  font-weight: 800;
+}
+.main-nav a.active::after {
+  transform: scaleX(1);
+  background: var(--brand-gold);
+}
+@media (min-width: 992px) {
+  .main-nav a:hover { color: var(--brand-gold-dark) !important; }
+  .main-nav a::after { background: var(--brand-gold); }
+}
+
+/* ===== 5. FAQ SVG Chevron ===== */
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-light);
+  border-radius: 50%;
+  color: var(--brand-gold-dark);
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  font-size: 0;
+}
+.faq-icon::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.3s ease;
+  color: var(--brand-gold-dark);
+}
+.faq-item.open .faq-icon {
+  background: var(--brand-gold);
+  color: var(--brand-navy);
+  transform: none;
+}
+.faq-item.open .faq-icon::before {
+  transform: rotate(225deg) translateY(-2px);
+  color: var(--brand-navy);
+}
+
+/* ===== 6. Timeline Step Number ===== */
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-dark) 100%);
+  color: var(--brand-navy);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 15px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(197,168,128,0.28);
+}
+
+/* ===== 7. Stat Card Dividers ===== */
+@media (min-width: 993px) {
+  .stat-card:not(:last-child) {
+    border-inline-end: 1px solid var(--line);
+  }
+}
+
+/* ===== 8. Section Eyebrow Pill ===== */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  background: rgba(197,168,128,0.1);
+  border: 1px solid rgba(197,168,128,0.28);
+  border-radius: 50px;
+  margin-bottom: 16px;
+}
+
+/* ===== 9. About & Service Card Hover ===== */
+.about-card,
+.service-item-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.about-card:hover      { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--brand-gold); }
+.service-item-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--brand-gold); }
+
+/* ===== 10. Form Error/Success States ===== */
+.form-control.is-error   { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(193,68,60,0.12); }
+.form-control.is-success { border-color: #25a244; box-shadow: 0 0 0 3px rgba(37,162,68,0.12); }
+.form-error-msg { display: none; font-size: 12px; color: var(--danger); margin-top: 4px; font-weight: 600; }
+.form-group.has-error .form-error-msg { display: block; }
+
+/* ===== 11. Body Scroll Lock ===== */
+body.nav-open { overflow: hidden; }
+
+/* ===== 12. Mobile Trust Indicators Center ===== */
+@media (max-width: 600px) {
+  .hero-trust-indicators { justify-content: center; }
+}
+
+/* ===== 13. Page Transition Fade (inner pages) ===== */
+.page-hero {
+  animation: heroFadeUp 0.6s cubic-bezier(0.25,0.8,0.25,1) 0.1s both;
+}
+
+/* ===== 14. prefers-reduced-motion — complete override ===== */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .hero .eyebrow,
+  .hero h1,
+  .hero .hero-lead,
+  .hero .hero-actions,
+  .hero .hero-trust-indicators,
+  .page-hero { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .site-header, .btn, .about-card, .service-item-card,
+  .timeline-step, .pest-card-premium, .testimonial-card,
+  .detail-block, .faq-item, .faq-icon { transition: none !important; }
 }
