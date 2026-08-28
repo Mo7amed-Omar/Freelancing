@@ -700,7 +700,7 @@ button {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marqueeMove 20s linear infinite;
+  animation: marqueeStopAndGo 15s ease-in-out infinite;
 }
 
 /* Pause on hover */
@@ -820,14 +820,13 @@ html[lang="en"] .feature-pill,
   box-shadow: 0 6px 16px rgba(11, 143, 70, 0.12);
 }
 
-/* أنيميشن التمرير الأفقي المستمر */
-@keyframes marqueeMove {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+@keyframes marqueeStopAndGo {
+  0%, 16.6% { transform: translateX(-50%); }
+  20%, 36.6% { transform: translateX(-40%); }
+  40%, 56.6% { transform: translateX(-30%); }
+  60%, 76.6% { transform: translateX(-20%); }
+  80%, 96.6% { transform: translateX(-10%); }
+  100% { transform: translateX(0); }
 }
 
 /* ===== قسم أقسام الحشرات (Pest Categories) ===== */
@@ -999,7 +998,7 @@ html[dir="ltr"] .pest-card:hover .pest-card-btn svg {
 .testimonials-marquee-track {
   display: flex;
   width: max-content;
-  animation: testimonialsMarquee 28s linear infinite;
+  animation: testimonialsStopAndGo 12s ease-in-out infinite;
 }
 
 .testimonials-marquee-container:hover .testimonials-marquee-track {
@@ -1078,14 +1077,12 @@ html[lang="en"] .testimonial-card,
   font-weight: 700;
 }
 
-/* أنيميشن التمرير الأفقي للتقييمات (من اليسار لليمين) */
-@keyframes testimonialsMarquee {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+@keyframes testimonialsStopAndGo {
+  0%, 20.8% { transform: translateX(0); }
+  25%, 45.8% { transform: translateX(-12.5%); }
+  50%, 70.8% { transform: translateX(-25%); }
+  75%, 95.8% { transform: translateX(-37.5%); }
+  100% { transform: translateX(-50%); }
 }
 
 /* دعم إيقاف الحركة لمستويات الوصول */
