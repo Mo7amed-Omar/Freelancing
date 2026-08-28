@@ -35,6 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // تفعيل تأثير رذاذ الرش البصري في الهيرو
   initHeroMist();
 
+  // حساب مسافة الحركة الفعلية لكاروسيل الميزات
+  initFeatureCarousel();
+
+  // تشغيل عدادات الإحصائيات عند ظهورها
+  initStatsCounter();
+
   // تفعيل صفحة التفاصيل الديناميكية إذا كنا بها
   initPestDetailPage();
 
@@ -45,6 +51,57 @@ document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
+function initFeatureCarousel() {
+  const carousel = document.querySelector(".why-marquee-container");
+  const track = carousel?.querySelector(".marquee-track");
+  const cards = carousel?.querySelectorAll(".carousel-item");
+  if (!carousel || !track || !cards || cards.length < 2) return;
+
+  const updateDistance = () => {
+    const firstCard = cards[0].getBoundingClientRect();
+    const secondCard = cards[1].getBoundingClientRect();
+    const step = secondCard.left - firstCard.left;
+    track.style.setProperty("--carousel-distance", `${step * (cards.length - 1)}px`);
+  };
+
+  updateDistance();
+  window.addEventListener("resize", updateDistance);
+}
+
+function initStatsCounter() {
+  const statsSection = document.querySelector(".stats-section");
+  if (!statsSection || typeof IntersectionObserver === "undefined") return;
+
+  const statNumbers = statsSection.querySelectorAll(".stat-number");
+  const observer = new IntersectionObserver((entries, statsObserver) => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+
+    statNumbers.forEach(animateCounter);
+    statsObserver.unobserve(statsSection);
+  }, { threshold: 0.2 });
+
+  observer.observe(statsSection);
+}
+
+function animateCounter(element) {
+  const target = Number(element.dataset.target);
+  const prefix = element.dataset.prefix || "";
+  const suffix = element.dataset.suffix || "";
+  const duration = 1500;
+  const startTime = performance.now();
+
+  const update = (currentTime) => {
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    const easedProgress = progress * (2 - progress);
+    const value = Math.floor(easedProgress * target).toLocaleString();
+    element.innerHTML = `${prefix ? `<span class="stat-prefix">${prefix}</span>` : ""}${value}${suffix ? `<span class="stat-suffix">${suffix}</span>` : ""}`;
+
+    if (progress < 1) requestAnimationFrame(update);
+  };
+
+  requestAnimationFrame(update);
+}
 
 // تفعيل وتغيير اللغة
 function initTranslations() {

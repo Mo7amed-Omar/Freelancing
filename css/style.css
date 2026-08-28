@@ -606,6 +606,75 @@ button {
   font-size: 15.5px;
 }
 
+/* ===== قسم الإحصائيات ===== */
+.stats-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: -40px auto 0;
+  max-width: 1200px;
+  padding-block: 50px;
+  position: relative;
+  z-index: 10;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  text-align: center;
+}
+
+.stat-card {
+  padding: 10px;
+}
+
+.stat-number {
+  color: var(--secondary);
+  display: flex;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  gap: 2px;
+  justify-content: center;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.stat-prefix,
+.stat-suffix {
+  color: var(--signal);
+  font-weight: 700;
+}
+
+.stat-label {
+  color: var(--ink-soft);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .stats-section {
+    margin-top: 0;
+    margin-inline: 24px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-section {
+    margin-inline: 16px;
+    padding-block: 30px;
+  }
+  .stats-grid {
+    gap: 16px;
+  }
+}
+
 /* ===== كاروسيل ميزات "ليه تختارنا" التمريري اللانهائي (Why Us Marquee Carousel) ===== */
 .why-us {
   background: var(--surface);
@@ -649,13 +718,13 @@ button {
 }
 
 @keyframes featureCarousel {
-  from { transform: translateX(calc(-4 * (100vw - 63px + 40px))); }
+  from { transform: translateX(calc(-1 * var(--carousel-distance, 1468px))); }
   to { transform: translateX(0); }
 }
 
 @media (min-width: 769px) {
   @keyframes featureCarousel {
-    from { transform: translateX(-1200px); }
+    from { transform: translateX(calc(-1 * var(--carousel-distance, 1200px))); }
     to { transform: translateX(0); }
   }
 }
