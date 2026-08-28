@@ -3,7 +3,6 @@
    Bilingual Client-Side Controller (translations.js must be loaded first)
    ========================================================================== */
 
-// 1. أيقونات خطية هندسية احترافية لكل آفة (SVG)
 const pestIcons = {
   bedbug: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3M12 19v3M6 12h12M4.5 6.5l2 2M17.5 6.5l-2 2M4.5 17.5l2-2M17.5 17.5l-2-2"/><ellipse cx="12" cy="12" rx="6" ry="7"/><path d="M12 5a3 3 0 0 1 3 3v1H9V8a3 3 0 0 1 3-3z"/></svg>`,
   cockroach: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="4.5" ry="7"/><path d="M12 6c-2 0-3-2-4-4M12 6c2 0 3-2 4-4M6 10l-3-2M18 10l3-2M5 14l-3-1M19 14l3-1M6 18l-3 2M18 18l3 2"/></svg>`,
@@ -13,7 +12,15 @@ const pestIcons = {
   woodborer: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="2" rx="1"/><path d="M12 5v6M12 13v6M6 8l3 3M18 8l-3 3M6 16l3-3M18 16l-3-3"/></svg>`,
   geckos: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M8 6h8M6 11h12M7 17h10M12 2L8 4M12 2l4 2M8 22l2-3M16 22l-2-3" stroke-linecap="round"/></svg>`,
   moths: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18V6M12 6C8.5 3 4 5 4 10c0 4 4.5 6 8 8M12 6c3.5-3 8-1 8 4 0 4-4.5 6-8 8" stroke-linecap="round"/></svg>`,
-  woodbeetle: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v4a4 4 0 0 0 8 0V3M12 7v14M5 11h14M6 16h12" stroke-linecap="round"/></svg>`
+  woodbeetle: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v4a4 4 0 0 0 8 0V3M12 7v14M5 11h14M6 16h12" stroke-linecap="round"/></svg>`,
+  flies: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="3" ry="4"/><path d="M9 10C7 7 3 6 2 8M15 10c2-3 6-4 7-2M9 12c-2 1-5 0-6-2M15 12c2 1 5 0 6-2M12 9V5"/><circle cx="11" cy="5" r="1"/><circle cx="13" cy="5" r="1"/></svg>`,
+  mosquito: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="2.5" ry="5"/><path d="M8 9C5 7 2 8 2 10M16 9c3-2 6-1 6 1M8 14c-3 1-5 3-4 5M16 14c3 1 5 3 4 5M12 7V3M11 3h2"/></svg>`,
+  scorpion: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8c0-2 2-3 4-2l6 4c2 1 3 3 2 5l-2 3c-1 2-3 2-4 1"/><path d="M14 15c1 2 3 4 5 3M19 18c1 0 2-1 2-2M4 8L2 6M4 8L3 10"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/></svg>`,
+  mosquitohawk: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10v10M10 20l2 2 2-2M8 8C5 5 2 6 2 9M16 8c3-3 6-2 6 1M8 11c-3 0-5 2-4 4M16 11c3 0 5 2 4 4"/><circle cx="12" cy="8" r="2"/></svg>`,
+  bees: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="4" ry="5"/><path d="M8 10C6 7 3 7 3 9M16 10c2-3 5-3 5-1M9 13H7M15 13h2M12 8V5M10 4h4M12 18l-1 3M12 18l1 3"/></svg>`,
+  spider: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 8V3M8.5 9.5L5 6M5 12H2M5 17l-2 3M8.5 14.5L5 18M12 16v5M15.5 14.5L19 18M19 12h3M19 7l-3.5 3.5M15.5 9.5L19 6"/></svg>`,
+  fleas: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="4"/><path d="M7 13c-2 2-3 5-1 7M17 13c2 2 3 5 1 7M8 10l-3-3M16 10l3-3M7 8l-4-1M17 8l4-1"/><circle cx="10" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/></svg>`,
+  woodlice: `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="6" ry="4"/><path d="M8 13l-3-2M16 13l3-2M7 15l-3 2M17 15l3 2M9 10l-2-3M15 10l2-3M6 13H4M18 13h2"/><path d="M8 9c2-3 6-3 8 0"/></svg>`
 };
 
 // 2. إدارة اللغات والترجمة (Localization Manager)
@@ -162,7 +169,15 @@ function renderPestGrid() {
     woodborer: "images/woodborer.png",
     geckos: "images/geckos.png",
     moths: "images/moths.png",
-    woodbeetle: "images/woodbeetle.png"
+    woodbeetle: "images/woodbeetle.png",
+    flies: "images/flies.jpg",
+    mosquito: "images/mosquito.jpg",
+    scorpion: "images/scorpion.jpg",
+    mosquitohawk: "images/mosquitohawk.jpg",
+    bees: "images/bees.jpg",
+    spider: "images/spider.jpg",
+    fleas: "images/fleas.jpg",
+    woodlice: "images/woodlice.jpg"
   };
 
   pestsData.forEach(pest => {
@@ -324,7 +339,15 @@ function initPestDetailPage() {
     woodborer: "images/woodborer.png",
     geckos: "images/geckos.png",
     moths: "images/moths.png",
-    woodbeetle: "images/woodbeetle.png"
+    woodbeetle: "images/woodbeetle.png",
+    flies: "images/flies.jpg",
+    mosquito: "images/mosquito.jpg",
+    scorpion: "images/scorpion.jpg",
+    mosquitohawk: "images/mosquitohawk.jpg",
+    bees: "images/bees.jpg",
+    spider: "images/spider.jpg",
+    fleas: "images/fleas.jpg",
+    woodlice: "images/woodlice.jpg"
   };
 
   const name = currentLang === "ar" ? pest.nameAr : pest.nameEn;
@@ -397,6 +420,54 @@ function initPestDetailPage() {
       "ظهور يرقات نشطة تنخر داخل قطع الأثاث الكلاسيكي.",
       "وجود فتحات دائرية الشكل يخرج منها غبار الخشب.",
       "تدهور جودة الأبواب والباركيه المعرض للرطوبة."
+    ],
+    flies: [
+      "ازدحام ملحوظ للذباب حول مصادر الغذاء أو القمامة.",
+      "تلوث الأطعمة المكشوفة بالبيض أو اليرقات.",
+      "ظهور ذباب صغير يطير داخل المطبخ أو حول الفاكهة.",
+      "وجود روائح تدل على مصدر تكاثر مخفي قريب."
+    ],
+    mosquito: [
+      "ظهور لدغات حمراء منتفخة متعددة عند الاستيقاظ صباحاً.",
+      "سماع أصوات أجنحة الناموس الرفيعة ليلاً في الغرفة.",
+      "وجود مياه راكدة قريبة تُشكّل بيئة تكاثر مثالية.",
+      "ازدياد مفاجئ في أعداد الناموس خلال أيام قليلة."
+    ],
+    scorpion: [
+      "رؤية عقارب في أركان الغرف أو تحت الأثاث الثقيل.",
+      "ظهور عقارب في الأحذية أو الملابس المطوية.",
+      "وجود شقوق أو ثقوب في الجدران والأرضيات توفر مأوى لها.",
+      "رصد نشاطها في الليل خاصة بالقرب من مصادر الرطوبة."
+    ],
+    mosquitohawk: [
+      "رؤية أعداد كبيرة من الهاموش تحوم حول الإضاءة ليلاً.",
+      "التصاق الهاموش بالجدران والأسقف بكثرة.",
+      "وجود بيئة رطبة أو حدائق مجاورة مصدر للتكاثر.",
+      "نشاط مرتفع في فصل الصيف والمواسم الدافئة."
+    ],
+    bees: [
+      "سماع أصوات طنين قوية من داخل الجدران أو الأسقف.",
+      "رؤية أعداد كبيرة من النحل تتجمع على نافذة أو فتحة.",
+      "ظهور خلية نحل في أماكن غير متوقعة داخل المبنى.",
+      "تزايد لسعات النحل للمقيمين دون مبرر واضح."
+    ],
+    spider: [
+      "انتشار خيوط العنكبوت الكثيفة في أركان الغرف والسقف.",
+      "رؤية عناكب كبيرة تتنقل على الجدران أو الأرضيات.",
+      "وجود بيض عنكبوت دقيق معلق داخل الخزائن والشقوق.",
+      "تزايد ملحوظ في عدد الحشرات الصغيرة (مصدر غذاء العنكبوت)."
+    ],
+    fleas: [
+      "ظهور لدغات صغيرة حمراء في الساقين والكاحلين.",
+      "ملاحظة حيوانات أليفة تحك جسمها بشكل متكرر ومتواصل.",
+      "رؤية حشرات صغيرة سوداء تقفز بسرعة على الأثاث أو السجاد.",
+      "وجود بيض أبيض دقيق جداً في شعر الحيوانات أو الفراش."
+    ],
+    woodlice: [
+      "رؤية حشرات رمادية صغيرة تشبه الكبسولات في الأماكن الرطبة.",
+      "تجمع قمل الخشب تحت الأحجار والحطب والأواني الخارجية.",
+      "وجودها بكثرة في المخازن والأقبية ذات الرطوبة العالية.",
+      "انتشارها عند وجود خشب متعفن أو جدران رطبة دائماً."
     ]
   };
 
@@ -454,6 +525,54 @@ function initPestDetailPage() {
       "Active larvae burrowing inside classic furniture pieces.",
       "Round exit holes showing fine wood dust.",
       "Deterioration of parquet floors exposed to humidity."
+    ],
+    flies: [
+      "Large clusters of flies swarming near food or garbage.",
+      "Visible larvae or eggs on uncovered food surfaces.",
+      "Small flies appearing inside the kitchen or around fruit.",
+      "Persistent foul odors indicating a nearby hidden breeding source."
+    ],
+    mosquito: [
+      "Multiple red swollen bite marks upon waking in the morning.",
+      "High-pitched wing buzz heard in the room at night.",
+      "Stagnant water nearby forming an ideal breeding ground.",
+      "A sudden sharp increase in mosquito numbers within days."
+    ],
+    scorpion: [
+      "Seeing scorpions in room corners or under heavy furniture.",
+      "Scorpions found inside shoes or folded clothing.",
+      "Wall and floor cracks providing ideal shelters for them.",
+      "Nocturnal activity observed especially near moisture sources."
+    ],
+    mosquitohawk: [
+      "Large numbers of crane flies hovering around lights at night.",
+      "Crane flies clinging to walls and ceilings in clusters.",
+      "Nearby moist gardens or lawns acting as breeding grounds.",
+      "High activity during summer and warm seasons."
+    ],
+    bees: [
+      "Loud buzzing sounds coming from inside walls or ceilings.",
+      "Large groups of bees gathering around windows or openings.",
+      "A bee hive spotted in unexpected spots inside the building.",
+      "Increasing sting incidents among residents without apparent reason."
+    ],
+    spider: [
+      "Dense webs spreading across room corners and ceiling angles.",
+      "Large spiders moving on walls or floors.",
+      "Tiny spider egg sacs hanging inside closets and crevices.",
+      "Noticeable increase in small insects (spiders' food source)."
+    ],
+    fleas: [
+      "Small red bite marks on ankles and lower legs.",
+      "Pets scratching themselves repeatedly and persistently.",
+      "Tiny black insects jumping quickly on furniture or carpet.",
+      "Fine white specks found in pet fur or bedding."
+    ],
+    woodlice: [
+      "Small gray pill-shaped bugs found in damp areas.",
+      "Woodlice gathering under stones, wood piles, or plant pots.",
+      "Heavy presence in damp basements and storerooms.",
+      "Spread correlating with rotting wood or constantly wet walls."
     ]
   };
 
@@ -502,6 +621,46 @@ function initPestDetailPage() {
       { q: "كيف يتم اكتشاف حفار الخشب؟", a: "عن طريق سماع أصوات نخر خفيفة ليلاً ورؤية نشارة ناعمة جداً تسقط من قطع الأثاث." },
       { q: "هل علاج حفار الخشب فعال بنسبة 100%؟", a: "نعم، بروتوكول الحقن والدهان يقضي على الأطوار داخل الخشب ويسد ثقوب الخروج تماماً." },
       { q: "هل يؤثر العلاج على لون الخشب؟", a: "لا، المواد المستخدمة زيتية شفافة لا تغير لون الدهان أو مظهر الخشب على الإطلاق." }
+    ],
+    flies: [
+      { q: "هل الذباب ينقل أمراضاً خطيرة؟", a: "نعم، الذباب ناقل رئيسي لأمراض التيفوئيد والكوليرا والتسمم الغذائي عبر ملامسة الأطعمة." },
+      { q: "كيف يتم القضاء على الذباب داخل المطبخ؟", a: "نستخدم مبيدات رذاذ خاصة وطُعوم مسمومة مع إزالة مصادر التكاثر كالقمامة والفضلات." },
+      { q: "هل يمكن منع الذباب من العودة؟", a: "نعم، بإزالة مصادر التكاثر وسد الفتحات وتركيب مصائد الضوء الإلكترونية." }
+    ],
+    mosquito: [
+      { q: "هل الناموس ينقل الملاريا في مصر؟", a: "نعم، بعض أنواع الناموس في مصر قد ينقل الملاريا وحمى الضنك وفيروس النيل الغربي." },
+      { q: "كيف يتم القضاء على الناموس نهائياً؟", a: "بمعالجة مصادر الرطوبة والمياه الراكدة ورش مبيدات حيوية وكيميائية مخصصة." },
+      { q: "هل رش الناموس آمن على الأطفال؟", a: "نعم، نستخدم مبيدات صحة عامة آمنة معتمدة لا تضر بالأطفال أو الحيوانات الأليفة." }
+    ],
+    scorpion: [
+      { q: "هل لسعة العقرب خطيرة على الإنسان؟", a: "نعم، بعض أنواع العقارب يمكن أن يكون سمها خطيراً وقد يستلزم تدخلاً طبياً فورياً." },
+      { q: "كيف تتخلصون من العقارب بأمان؟", a: "نستخدم مواد كيميائية طاردة ومبيدات متخصصة مع سد الشقوق التي تختبئ بها." },
+      { q: "هل يمكن منع دخول العقارب للمنزل؟", a: "نعم، بسد الفتحات في الجدران والأرضيات واستخدام مواد طاردة حول أسس المبنى." }
+    ],
+    mosquitohawk: [
+      { q: "هل الهاموش يؤذي الإنسان؟", a: "لا، الهاموش لا يعض ولا يؤذي مباشرة لكنه مصدر إزعاج شديد ومؤشر على وجود رطوبة." },
+      { q: "لماذا يتجمع الهاموش عند الإضاءة؟", a: "لأن الهاموش ينجذب للضوء بشكل طبيعي، وتكاثره يرتبط بالمناطق الرطبة المحيطة." },
+      { q: "كيف تتخلصون من الهاموش؟", a: "بمكافحة مصادر الرطوبة والمياه الراكدة ورش مبيدات مخصصة للحشرات الطائرة." }
+    ],
+    bees: [
+      { q: "هل تقتلون النحل أثناء المكافحة؟", a: "نحاول دائماً تهجير الخلايا بشكل آمن قبل اللجوء للمواد الكيميائية حفاظاً على البيئة." },
+      { q: "هل يمكن نقل خلية النحل بأمان؟", a: "نعم، نمتلك فريقاً متخصصاً لنقل الخلايا بأمان للأماكن المناسبة بعيداً عن التجمعات." },
+      { q: "هل لسعات النحل خطيرة؟", a: "لسعة النحل مؤلمة وقد تكون خطرة على من يعانون من حساسية، ولذا يجب التدخل الفوري." }
+    ],
+    spider: [
+      { q: "هل العناكب في المنازل المصرية سامة؟", a: "معظم العناكب الشائعة غير خطيرة، لكن بعض الأنواع قد تسبب ردود فعل تحسسية." },
+      { q: "كيف تتخلصون من العناكب دون إيذاء الأطفال؟", a: "نستخدم مبيدات صحة عامة آمنة مع إزالة الخيوط وسد الشقوق ومصادر الغذاء." },
+      { q: "هل ظهور العناكب يعني وجود حشرات أخرى؟", a: "نعم، وجود العناكب عادةً يدل على وفرة في حشرات أصغر تشكل غذاءها الرئيسي." }
+    ],
+    fleas: [
+      { q: "هل البراغيث تنقل الأمراض؟", a: "نعم، تنقل البراغيث أمراضاً خطيرة كالطاعون والتيفوس عبر لدغاتها وفضلاتها." },
+      { q: "هل يجب معالجة الحيوانات الأليفة أيضاً؟", a: "بالضرورة، يجب تنسيق العلاج البيطري للحيوان مع الرش المنزلي لضمان النتيجة الكاملة." },
+      { q: "كم يستغرق القضاء على البراغيث؟", a: "بروتوكولنا يشمل زيارتين: الأولى للبالغين والثانية بعد أسبوعين للقضاء على البيض الفاقس." }
+    ],
+    woodlice: [
+      { q: "هل قمل الخشب يؤذي الأثاث؟", a: "قمل الخشب لا يتلف الأثاث مباشرة لكنه مؤشر على ارتفاع الرطوبة التي تضر بالأخشاب." },
+      { q: "لماذا يظهر قمل الخشب داخل المنزل؟", a: "يدخل عادةً من الحديقة أو الجدران الرطبة بحثاً عن مواد عضوية متعفنة." },
+      { q: "كيف يتم التخلص منه نهائياً؟", a: "بمعالجة مصادر الرطوبة وإزالة الخشب المتعفن ورش مبيدات ذات أثر متبقٍ في الأماكن الرطبة." }
     ]
   };
 
@@ -550,6 +709,46 @@ function initPestDetailPage() {
       { q: "How do we detect wood boring beetles?", a: "By hearing chewing noises at night and seeing fine wood dust falling from furniture." },
       { q: "Is the treatment 100% effective?", a: "Yes, our injection and coating protocol eliminates larvae and seals exit holes fully." },
       { q: "Does treatment affect wood color?", a: "No, our transparent oil-based products preserve wood finish completely." }
+    ],
+    flies: [
+      { q: "Do flies transmit dangerous diseases?", a: "Yes, flies are primary vectors for typhoid, cholera, and food poisoning through contact with food." },
+      { q: "How do you eliminate flies from the kitchen?", a: "We use specialized spray pesticides and toxic baits alongside removing breeding sources like garbage." },
+      { q: "Can we prevent flies from returning?", a: "Yes, by eliminating breeding sources, sealing openings, and installing electronic light traps." }
+    ],
+    mosquito: [
+      { q: "Do mosquitoes carry malaria in Egypt?", a: "Some mosquito species in Egypt may transmit malaria, dengue fever, and West Nile virus." },
+      { q: "How do you fully eliminate mosquitoes?", a: "By treating stagnant water sources and spraying specialized biological and chemical pesticides." },
+      { q: "Is mosquito spraying safe for children?", a: "Yes, we use approved safe public health pesticides that do not harm children or pets." }
+    ],
+    scorpion: [
+      { q: "Is a scorpion sting dangerous to humans?", a: "Yes, some species carry potent venom that may require immediate medical attention." },
+      { q: "How do you safely eliminate scorpions?", a: "We use specialized repellent chemicals and seal cracks and crevices where they hide." },
+      { q: "Can we prevent scorpions from entering?", a: "Yes, by sealing wall and floor openings and applying repellent materials around the building base." }
+    ],
+    mosquitohawk: [
+      { q: "Do crane flies harm humans?", a: "No, crane flies don't bite or harm directly, but they are a major nuisance and signal moisture issues." },
+      { q: "Why do they gather around lights?", a: "Crane flies are naturally attracted to light, and their breeding is linked to nearby wet areas." },
+      { q: "How do you eliminate them?", a: "By addressing moisture sources, stagnant water, and applying targeted flying insect pesticides." }
+    ],
+    bees: [
+      { q: "Do you kill bees during treatment?", a: "We always try to safely relocate hives before resorting to chemicals, preserving environmental balance." },
+      { q: "Can a bee hive be safely relocated?", a: "Yes, our specialized team can safely relocate hives to suitable locations away from residential areas." },
+      { q: "Are bee stings dangerous?", a: "Bee stings are painful and potentially dangerous for those with allergies, requiring immediate intervention." }
+    ],
+    spider: [
+      { q: "Are spiders in Egyptian homes venomous?", a: "Most common house spiders are harmless, but some species may cause allergic reactions." },
+      { q: "How do you remove spiders safely around children?", a: "We use safe public health pesticides, remove webs, seal crevices, and eliminate their food sources." },
+      { q: "Does spider presence indicate other pests?", a: "Yes, spiders typically indicate an abundance of smaller insects forming their primary food supply." }
+    ],
+    fleas: [
+      { q: "Do fleas transmit diseases?", a: "Yes, fleas transmit serious diseases like plague and typhus through their bites and droppings." },
+      { q: "Must pets be treated too?", a: "Absolutely. Veterinary pet treatment must be coordinated with home spraying to ensure full elimination." },
+      { q: "How long does flea elimination take?", a: "Our protocol includes two visits: the first for adults and the second after two weeks for newly hatched eggs." }
+    ],
+    woodlice: [
+      { q: "Do woodlice damage furniture?", a: "Woodlice don't directly damage furniture, but they indicate high moisture levels that harm wood." },
+      { q: "Why do woodlice appear inside homes?", a: "They usually enter from gardens or damp walls seeking decaying organic material." },
+      { q: "How do you permanently eliminate them?", a: "By treating moisture sources, removing rotting wood, and spraying residual pesticides in damp areas." }
     ]
   };
 
