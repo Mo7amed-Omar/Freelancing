@@ -16,19 +16,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="brand" aria-label="الرئيسية">
-        <!-- شعار الشركة الأساسي مع Fallback مرن بتصميم SVG متطابق -->
-        <img src="images/logo.png" alt="الشركة الألمانية" class="brand-logo" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
-        
-        <div id="logoFallback" class="brand-mark" style="display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 100 100" width="46" height="46" fill="none">
-            <path d="M50 12 L85 40 L85 80 L15 80 L15 40 Z" stroke="var(--brand-blue)" stroke-width="5" stroke-linejoin="round"/>
-            <rect x="42" y="28" width="16" height="14" stroke="var(--brand-blue)" stroke-width="3" fill="none"/>
-            <path d="M50 28 v14 M42 35 h16" stroke="var(--brand-blue)" stroke-width="1.5"/>
-            <circle cx="50" cy="60" r="8" fill="var(--brand-green)"/>
-            <path d="M50 48v8 M42 56l16 8 M42 64l16-8 M36 60h28" stroke="var(--brand-green)" stroke-width="2.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-
+        <img src="images/logo.png" alt="الشركة الألمانية" class="brand-logo">
         <div class="brand-text">
           <strong data-i18n="brandTitle">الشركة الألمانية المتقدمة</strong>
           <small data-i18n="brandSubtitle">لمكافحة الحشرات والقوارض</small>
@@ -54,7 +42,6 @@
 
       <div class="header-actions">
         <button id="langToggleBtn" class="lang-toggle" aria-label="تبديل اللغة">English 🌐</button>
-        <a class="btn btn-nav-cta" href="contact.html" data-i18n="navCTA">احجز الآن</a>
       </div>
     </div>
   </header>
@@ -77,7 +64,7 @@
       </p>
 
       <div class="hero-actions">
-        <a href="contact.html" class="btn btn-primary" data-i18n="btnHeroPrimary">احجز معاينة</a>
+        <a href="tel:01150087555" class="btn btn-primary" data-i18n="btnHeroPrimary">اتصل الآن</a>
         <a href="https://wa.me/201150087555?text=مرحباً، أريد الاستفسار عن خدمة مكافحة الحشرات" target="_blank" rel="noopener" class="btn btn-whatsapp-secondary" data-i18n="btnHeroSecondary">تواصل عبر واتساب</a>
       </div>
 
