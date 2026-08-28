@@ -6,28 +6,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;900&display=swap');
 
 :root {
-  /* ألوان الهوية البصرية المستخلصة من الشعار */
-  --brand-green: #0B8F46;
-  --brand-blue: #29A4E3;
+  /* ألوان الهوية البصرية الجديدة - Premium Corporate German Style */
+  --brand-navy: #0A192F;      /* Dark Navy */
+  --brand-blue: #172A45;      /* Navy Medium */
+  --brand-gold: #C5A880;      /* Gold accent */
+  --brand-gold-dark: #A38458; /* Gold dark */
+  --brand-green: var(--brand-gold); /* Map old green to new Gold */
   
-  /* نظام ألوان متناسق وهادئ (Premium & Clean) */
-  --primary: #087034;       /* درجة أدكن قليلاً للخطوط لضمان تباين عالٍ وقراءة مريحة */
-  --primary-light: #EBF8F0;
-  --secondary: #1F82B5;     /* درجة أدكن قليلاً للخطوط للتباين */
-  --secondary-light: #EBF5FB;
+  --primary: var(--brand-navy);
+  --primary-light: #F0F4F8;
+  --secondary: var(--brand-blue);
+  --secondary-light: #E6ECF4;
   
-  --bg: #F4F7F5;            /* خلفية مريحة للعين */
+  --bg: #F8F9FA;            /* Neutral Gray background */
   --surface: #FFFFFF;
-  --ink: #0F1E14;           /* أسود مخضر داكن جداً بدلاً من الأسود الصافي */
-  --ink-soft: #3A4E41;
-  --steel: #607568;
-  --steel-light: #DCE3DF;
-  --line: #E5ECE8;
+  --ink: #0A192F;           /* Dark Navy instead of pure black */
+  --ink-soft: #4F5E7B;      /* Muted Navy/Gray for secondary text */
+  --steel: #6E7C96;
+  --steel-light: #E2E8F0;   /* Light gray border color */
+  --line: #E2E8F0;
   
-  --signal: #E2A63B;
-  --signal-dark: #B9821F;
+  --signal: var(--brand-gold);
+  --signal-dark: var(--brand-gold-dark);
   --danger: #C1443C;
-  --safe: #0B8F46;
+  --safe: var(--brand-gold);
 
   /* الخطوط الافتراضية للعربية */
   --font-display: 'Cairo', sans-serif;
@@ -35,15 +37,16 @@
 
   --radius: 12px;
   --radius-sm: 8px;
-  --shadow-sm: 0 4px 12px rgba(11, 143, 70, 0.05);
-  --shadow: 0 16px 36px -12px rgba(11, 143, 70, 0.12);
-  --shadow-hover: 0 20px 48px -10px rgba(11, 143, 70, 0.2);
+  --shadow-sm: 0 4px 12px rgba(10, 25, 47, 0.05);
+  --shadow: 0 16px 36px -12px rgba(10, 25, 47, 0.12);
+  --shadow-hover: 0 20px 48px -10px rgba(10, 25, 47, 0.2);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   
+  /* hazard strip in header: Dark Navy and Gold! */
   --hazard: repeating-linear-gradient(
       -45deg,
-      var(--ink) 0px, var(--ink) 12px,
-      var(--brand-green) 12px, var(--brand-green) 24px
+      var(--brand-navy) 0px, var(--brand-navy) 12px,
+      var(--brand-gold) 12px, var(--brand-gold) 24px
   );
 }
 
@@ -431,13 +434,13 @@ button {
 .btn-call {
   background: var(--brand-green);
   color: #fff;
-  box-shadow: 0 6px 20px rgba(11, 143, 70, 0.25);
+  box-shadow: 0 6px 20px rgba(10, 25, 47, 0.25);
 }
 
 .btn-call:hover {
   background: var(--primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(11, 143, 70, 0.35);
+  box-shadow: 0 8px 24px rgba(10, 25, 47, 0.35);
 }
 
 .btn-secondary {
@@ -817,7 +820,7 @@ html[lang="en"] .feature-pill,
   border-color: var(--brand-green);
   color: var(--primary);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(11, 143, 70, 0.12);
+  box-shadow: 0 6px 16px rgba(10, 25, 47, 0.12);
 }
 
 @keyframes marqueeStopAndGo {
@@ -1652,7 +1655,7 @@ html[lang="en"] .testimonial-card,
   outline: none;
   border-color: var(--brand-green);
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(11, 143, 70, 0.1);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.15);
 }
 
 .btn-submit {
@@ -1662,7 +1665,7 @@ html[lang="en"] .testimonial-card,
   font-weight: 700;
   padding: 14px;
   border-radius: var(--radius);
-  box-shadow: 0 4px 12px rgba(11, 143, 70, 0.2);
+  box-shadow: 0 4px 12px rgba(10, 25, 47, 0.2);
   transition: var(--transition);
 }
 
@@ -1730,12 +1733,58 @@ html[lang="en"] .testimonial-card,
 @media (max-width: 991px) {
   .header-inner {
     padding-block: 10px;
+    position: relative;
   }
   .main-nav {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--brand-navy);
+    flex-direction: column;
+    padding: 16px 24px;
+    border-bottom: 2px solid var(--brand-gold);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+  }
+  .main-nav.active {
+    display: flex !important;
+  }
+  .main-nav a {
+    padding-block: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #fff !important;
+    width: 100%;
+    margin: 0;
+  }
+  .main-nav a:last-child {
+    border-bottom: none;
   }
   .menu-toggle {
     display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1000;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--brand-gold);
+    margin-block: 5px;
+    transition: var(--transition);
+  }
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
   .tel-link {
     display: none;
@@ -1798,5 +1847,191 @@ html[lang="en"] .testimonial-card,
   }
   .hero-image-bg {
     animation: none;
+  }
+}
+
+/* ===== نداءات العمل وقسم البطل الجديد ===== */
+.btn-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--brand-gold);
+  color: var(--brand-navy) !important;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  transition: var(--transition);
+  border: 1px solid var(--brand-gold);
+}
+
+.btn-nav-cta:hover {
+  background-color: transparent;
+  color: var(--brand-gold) !important;
+  box-shadow: 0 4px 12px rgba(197, 168, 128, 0.2);
+}
+
+.btn-whatsapp-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--brand-gold) !important;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  transition: var(--transition);
+  border: 2px solid var(--brand-gold);
+  text-decoration: none;
+}
+
+.btn-whatsapp-secondary:hover {
+  background-color: var(--brand-gold);
+  color: var(--brand-navy) !important;
+}
+
+.hero-trust-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  list-style: none;
+  padding: 0;
+  margin-top: 32px;
+  justify-content: flex-start;
+}
+
+.hero-trust-indicators li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  color: var(--surface);
+  font-weight: 500;
+}
+
+.hero-trust-indicators li .icon-checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: var(--brand-gold);
+  color: var(--brand-navy);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ===== قسم طريقة العمل (Timeline) ===== */
+.how-it-works {
+  background-color: var(--bg);
+}
+
+.timeline-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+  position: relative;
+}
+
+.timeline-step {
+  background: var(--surface);
+  padding: 32px 24px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.timeline-step:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: var(--brand-gold);
+}
+
+.timeline-step .step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.timeline-step .step-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--brand-gold);
+  opacity: 0.8;
+}
+
+.timeline-step h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  margin: 0;
+}
+
+.timeline-step .step-desc {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== قسم الأمان والسلامة ===== */
+.safety-section {
+  background-color: var(--brand-navy);
+  color: var(--surface);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.safety-inner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-width: 900px;
+  margin-inline: auto;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 32px 40px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.safety-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  background-color: rgba(197, 168, 128, 0.1);
+  color: var(--brand-gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.safety-content-text h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brand-gold);
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.safety-content-text p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .safety-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
   }
 }

@@ -20,6 +20,9 @@ const pestIcons = {
 let currentLang = localStorage.getItem("pest_control_lang") || "ar";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // تفعيل القائمة المنسدلة للهاتف
+  initMobileMenu();
+
   // تفعيل التوطين الأساسي
   initTranslations();
   
@@ -394,5 +397,38 @@ function initContactForm() {
     setTimeout(() => {
       successAlert.style.display = "none";
     }, 6000);
+  });
+}
+
+// 10. تشغيل قائمة الجوال المتجاوبة (Responsive Mobile Hamburger Menu)
+function initMobileMenu() {
+  const menuToggle = document.getElementById("menuToggleBtn");
+  const mainNav = document.querySelector(".main-nav");
+  if (!menuToggle || !mainNav) return;
+
+  menuToggle.addEventListener("click", () => {
+    const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", !isExpanded);
+    menuToggle.classList.toggle("active");
+    mainNav.classList.toggle("active");
+  });
+
+  // إغلاق القائمة عند النقر خارجها
+  document.addEventListener("click", (e) => {
+    if (!menuToggle.contains(e.target) && !mainNav.contains(e.target)) {
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.classList.remove("active");
+      mainNav.classList.remove("active");
+    }
+  });
+
+  // إغلاق القائمة عند النقر على أي رابط تنقل
+  const navLinks = mainNav.querySelectorAll("a");
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.classList.remove("active");
+      mainNav.classList.remove("active");
+    });
   });
 }

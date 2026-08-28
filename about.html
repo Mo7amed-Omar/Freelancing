@@ -31,19 +31,26 @@
         </div>
       </a>
 
+      <!-- القائمة الرئيسية للتنقل -->
       <nav class="main-nav" aria-label="التنقل الرئيسي">
         <a href="index.html" data-i18n="navHome">الرئيسية</a>
-        <a href="services.html" data-i18n="navServices">خدماتنا</a>
+        <a href="index.html#pests" data-i18n="navServices">الخدمات</a>
         <a href="about.html" data-i18n="navAbout">من نحن</a>
+        <a href="index.html#why-us" data-i18n="navWhyUs">لماذا نحن</a>
+        <a href="index.html#how-it-works" data-i18n="navHowItWorks">طريقة العمل</a>
+        <a href="index.html#faqs" data-i18n="navFaq">الأسئلة الشائعة</a>
         <a href="contact.html" data-i18n="navContact">اتصل بنا</a>
       </nav>
 
+      <button class="menu-toggle" id="menuToggleBtn" aria-label="فتح القائمة" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <div class="header-actions">
         <button id="langToggleBtn" class="lang-toggle" aria-label="تبديل اللغة">English 🌐</button>
-        <a class="tel-link" href="tel:01150087555">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span data-i18n="telText">01150087555</span>
-        </a>
+        <a class="btn btn-nav-cta" href="contact.html" data-i18n="navCTA">احجز الآن</a>
       </div>
     </div>
   </header>

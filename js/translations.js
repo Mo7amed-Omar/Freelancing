@@ -2,8 +2,11 @@ const translations = {
   ar: {
     // Header & Navigation
     navHome: "الرئيسية",
-    navServices: "خدماتنا",
+    navServices: "الخدمات",
     navAbout: "من نحن",
+    navWhyUs: "لماذا نحن",
+    navHowItWorks: "طريقة العمل",
+    navFaq: "الأسئلة الشائعة",
     navContact: "اتصل بنا",
     langBtn: "English",
     brandTitle: "الشركة الألمانية المتقدمة",
@@ -12,65 +15,60 @@ const translations = {
     stickyWhatsapp: "واتساب",
     telText: "01150087555",
     callNowText: "اتصل الآن: 01150087555",
+    navCTA: "احجز الآن",
 
     // Hero Section
     heroEyebrow: "GERMAN PEST CONTROL SYSTEM — نظام مكافحة بمواصفات ألمانية",
-    heroTitle: "حماية منزلك وعائلتك من الحشرات، بـ",
-    heroTitleHighlight: "دقة هندسية ألمانية",
-    heroLead: "فريق عمل مرخّص من وزارة الصحة، خطط علاجية مدروسة لكل حالة، ومتابعة مضمونة حتى القضاء التام على المشكلة — بمبيدات آمنة تماماً على أطفالك وحيواناتك الأليفة.",
+    heroTitle: "تخلّص من الحشرات بأمان وحماية تدوم",
+    heroLead: "حلول متخصصة لمكافحة الحشرات والقوارض للمنازل والمنشآت، باستخدام مبيدات صحة عامة معتمدة وإجراءات مكافحة احترافية، مع المتابعة والضمان حسب نوع الخدمة.",
     btnWhatsapp: "واتساب فوري",
     btnCall: "اتصل الآن",
-    spec24_7_val: "24/7",
-    spec24_7_lbl: "خدمة طوال أيام الأسبوع",
-    specLic_val: "ترخيص رسمي",
-    specLic_lbl: "معتمد من وزارة الصحة",
-    specGuarantee_val: "ضمان حقيقي",
-    specGuarantee_lbl: "متابعة مجانية بعد الخدمة",
+    btnHeroPrimary: "احجز معاينة",
+    btnHeroSecondary: "تواصل عبر واتساب",
+    trustIndicator1: "فريق فني متخصص",
+    trustIndicator2: "مبيدات صحة عامة معتمدة",
+    trustIndicator3: "متابعة بعد الخدمة",
+    trustIndicator4: "ضمان حسب نوع الخدمة",
 
-    // Hero Slider
-    slide1Title: "خدماتنا المتميزة",
-    slide1Desc: "نقدم حلولاً متكاملة لمكافحة الآفات للمنازل، المطاعم، والشركات مع ضمان معتمد.",
-    slide1Link: "عرض الخدمات",
-    slide2Title: "لماذا تختارنا؟",
-    slide2Desc: "نعمل بجدية وانضباط ألماني يضمن القضاء التام على الحشرات بأمان تام وبدون روائح.",
-    slide2Link: "اقرأ عن معاييرنا",
-    slide3Title: "آراء عملائنا",
-    slide3Desc: "ثقة مئات الأسر والشركات هي سر نجاحنا. شاهد ماذا قالوا عن خدماتنا ودقتنا.",
-    slide3Link: "شاهد التقييمات",
+    // Services Section
+    servicesTitleMain: "عندك مشكلة مع حشرة معينة؟ إحنا عندنا الحل.",
 
-    // Why Choose Us (Flipping Slides)
-    whyTitle: "ليه تختار الشركة الألمانية المتقدمة؟",
+    // Why Choose Us
+    whyTitle: "ليه تختار الشركة الألمانية؟",
     whySubtitle: "التزامنا بالدقة والسلامة والفعالية يجعلنا الخيار الأول دائماً للقضاء على الآفات.",
-    whyFeat1: "متابعات مجانية بعد كل خدمة",
-    whyFeat2: "خبرة تتجاوز 10 سنوات في السوق المصري",
-    whyFeat3: "فريق مدرب على أعلى مستوى",
-    whyFeat4: "مبيدات آمنة ومعتمدة",
-    whyFeat5: "استجابة سريعة خلال 24 ساعة",
-    statHappyClients: "عميل سعيد",
-    statYearsExp: "سنوات خبرة",
-    statSuccessRate: "نسبة نجاح المعالجة",
-    statSupport: "دعم ومتابعة متواصلة",
-    whySlide1Title: "مبيدات آمنة تماماً وبدون رائحة",
-    whySlide1Desc: "نستخدم مبيدات صديقة للبيئة خالية من الروائح النفاذة والمواد الطيارة السامة، مصرحة بالكامل من وزارة الصحة المصرية ومنظمة الصحة العالمية، مما يجعلها آمنة كلياً على الأطفال والرضع وكبار السن ومرضى الحساسية والحيوانات الأليفة دون الحاجة لمغادرة المنزل.",
-    whySlide2Title: "متابعات دورية وضمان مكتوب",
-    whySlide2Desc: "لا تنتهي علاقتنا بك بمجرد الرش. نقدم ضماناً معتمداً ومكتوباً لفترات تتراوح من ٣ أشهر وحتى سنة كاملة، مع جدول زيارات متابعة دورية مجانية يقوم بها فريقنا الفني للتأكد من انقطاع دورة حياة الحشرة وضمان عدم عودتها للمكان نهائياً.",
-    whySlide3Title: "فريق فني مدرب على أعلى مستوى",
-    whySlide3Desc: "يضم فريقنا نخبة من الكوادر الفنية المدربة هندسياً وعلمياً في معهد بحوث الحشرات والآفات. يتميز فريقنا بالانضباط والالتزام بالمواعيد، والقدرة على تشخيص مسارات الحشرات وجحورها بدقة متناهية لوضع الحل الأنسب والأسرع.",
-    whySlide4Title: "ترخيص رسمي من وزارة الصحة",
-    whySlide4Desc: "نحن شركة مسجلة رسمياً ومرخصة لمزاولة أعمال مكافحة آفات الصحة العامة والتعقيم. نلتزم بأشد البروتوكولات الهندسية الألمانية صرامة في تطبيق المواد الكيميائية لتوفير أعلى معدلات السلامة والأمان لك ولعائلتك.",
+    whyFeat1: "فريق فني متخصص",
+    whyFeat2: "معاينة وتشخيص قبل التنفيذ",
+    whyFeat3: "استخدام مبيدات صحة عامة معتمدة",
+    whyFeat4: "أنظمة مكافحة متكاملة",
+    whyFeat5: "متابعة بعد الخدمة",
+    whyFeat6: "ضمان حسب نوع الخدمة",
 
-    // Pests Section
-    pestsTitle: "الآفات التي نتعامل معها",
-    pestsSubtitle: "كل نوع من الحشرات له بروتوكول علاج علمي مخصص. اضغط على \"عرض المزيد\" لمعرفة التفاصيل والبدء في العلاج الفوري.",
+    // How It Works
+    timelineTitle: "طريقة العمل",
+    timelineSubtitle: "خطوات مدروسة بدقة ألمانية لضمان القضاء الآمن والتام على الآفات",
+    timelineStep1Title: "تواصل معنا",
+    timelineStep1Desc: "تواصل معنا هاتفياً أو عبر واتساب لشرح المشكلة وتحديد موعد.",
+    timelineStep2Title: "المعاينة والتشخيص",
+    timelineStep2Desc: "يقوم مهندس متخصص بفحص الموقع لتحديد نوع الآفة ومصدرها.",
+    timelineStep3Title: "تحديد خطة المكافحة",
+    timelineStep3Desc: "نضع خطة علاجية مخصصة ومدروسة تناسب طبيعة وحجم الإصابة.",
+    timelineStep4Title: "تنفيذ الخدمة",
+    timelineStep4Desc: "تطبيق المبيدات المعتمدة بدقة متناهية وإجراءات وقائية كاملة.",
+    timelineStep5Title: "المتابعة والضمان",
+    timelineStep5Desc: "زيارات فحص للتأكد من نجاح المعالجة مع تقديم الضمان المعتمد.",
+
+    // Safety Section
+    safetyTitle: "الأمان والسلامة",
+    safetyText: "نستخدم مبيدات صحة عامة معتمدة ويتم تطبيقها وفق تعليمات الشركة المصنعة وإجراءات السلامة المناسبة لكل حالة.",
+
+    // General
     btnMore: "عرض المزيد",
-
-    // FAQs Section
     faqTitle: "الأسئلة الشائعة",
     faqSubtitle: "كل ما تود معرفته عن خدماتنا، مبيداتنا، ونظام الضمان والمتابعة.",
     faqQ1: "هل المبيدات المستخدمة آمنة على الأطفال والحيوانات؟",
-    faqA1: "نعم، جميع مبيداتنا معتمدة ومسجلة رسمياً بوزارة الصحة المصرية ومطابقة لمواصفات منظمة الصحة العالمية (WHO). نستخدم تركيبات مائية متطورة عديمة الرائحة تماماً وخالية من المذيبات العضوية السامة، مما يضمن أمانها الكامل على الرضع والأطفال ومرضى الحشاسية والربو والحيوانات الأليفة.",
+    faqA1: "نعم، جميع مبيداتنا معتمدة ومسجلة رسمياً بوزارة الصحة المصرية ومطابقة لمواصفات منظمة الصحة العالمية (WHO). نستخدم تركيبات مائية متطورة عديمة الرائحة تماماً وخالية من المذيبات العضوية السامة، مما يضمن أمانها الكامل على الرضع والأطفال ومرضى الحساسية والربو والحيوانات الأليفة.",
     faqQ2: "ما هي مدة الضمان وكيف تفعل المتابعات؟",
-    faqA2: "نوفر ضماناً مكتوباً ومختوماً يبدأ من ٣ أشهر للرطوبة والآفات العادية ويصل لسنة كاملة للمكافحة الشاملة، وعقود النمل الأبيض تصل لـ ١٥ سنة. خلال فترة الضمان نقوم بزيارات فحص دورية مجانية، وفي حال ظهور أي نشاط للآفة نقوم بإعادة المعالجة فوراً وبشكل مجاني تماماً دون أي رسوم إضافية.",
+    faqA2: "نوفر ضماناً مكتوباً ومختوماً يبدأ من ٣ أشهر للرطوبة والآفات العادية ويصل لسنة كاملة للمكافحة الشاملة، وعقود النمل الأبيض تصل لـ ١٥ سنة. خلال فترة الضمان نقوم بزيارات فحص دورية مجانية، وفي حال ظهور أي نشاط للآفة نقوم بإعادة المعالجة فوراً وبشكل مجاني تماماً دون أي رسوم إاضافية.",
     faqQ3: "هل يجب علينا مغادرة المنزل أو إخلاء المطبخ؟",
     faqA3: "بالتأكيد لا. بفضل استخدام مبيدات الجل الحديثة والرش المستهدف للمنافذ والشقوق، لا يطلب منك مغادرة المكان أو إخلاء المطبخ أو إزالة الأواني والأطعمة. المعالجة تتم بأقل إزعاج ممكن لروتينك اليومي وبأعلى درجات الهدوء والأمان.",
     faqQ4: "كيف يتم تحديد تكلفة الخدمة وهل المعاينة مجانية؟",
@@ -148,8 +146,11 @@ const translations = {
   en: {
     // Header & Navigation
     navHome: "Home",
-    navServices: "Our Services",
+    navServices: "Services",
     navAbout: "About Us",
+    navWhyUs: "Why Us",
+    navHowItWorks: "How It Works",
+    navFaq: "FAQ",
     navContact: "Contact Us",
     langBtn: "العربية",
     brandTitle: "German Advanced",
@@ -158,59 +159,54 @@ const translations = {
     stickyWhatsapp: "WhatsApp",
     telText: "01150087555",
     callNowText: "Call Now: 01150087555",
+    navCTA: "Book Now",
 
     // Hero Section
     heroEyebrow: "GERMAN PEST CONTROL SYSTEM — Precise Specifications",
-    heroTitle: "Protect Your Home and Family, With",
-    heroTitleHighlight: "German Engineering Precision",
-    heroLead: "A team licensed by the Ministry of Health, systematic treatment plans tailored to each case, and guaranteed follow-up until complete eradication — using eco-friendly, family and pet-safe pesticides.",
+    heroTitle: "Get rid of pests safely with lasting protection",
+    heroLead: "Specialized pest and rodent control solutions for homes and facilities, using approved public health pesticides and professional procedures, with follow-up and warranty based on service type.",
     btnWhatsapp: "Instant WhatsApp",
     btnCall: "Call Now",
-    spec24_7_val: "24/7",
-    spec24_7_lbl: "Always At Your Service",
-    specLic_val: "Official License",
-    specLic_lbl: "Licensed by Ministry of Health",
-    specGuarantee_val: "Real Warranty",
-    specGuarantee_lbl: "Free Follow-up & Support",
+    btnHeroPrimary: "Book Inspection",
+    btnHeroSecondary: "Contact via WhatsApp",
+    trustIndicator1: "Specialized technical team",
+    trustIndicator2: "Approved public health pesticides",
+    trustIndicator3: "Post-service follow-up",
+    trustIndicator4: "Service-based warranty",
 
-    // Hero Slider
-    slide1Title: "Our Premium Services",
-    slide1Desc: "We offer integrated pest control solutions for residential, food sector, and commercial sites with a certified warranty.",
-    slide1Link: "View Services",
-    slide2Title: "Why Choose Us?",
-    slide2Desc: "We work with German discipline and standards, ensuring complete pest eradication with odorless and safe pesticides.",
-    slide2Link: "Our Standards",
-    slide3Title: "Client Reviews",
-    slide3Desc: "The trust of hundreds of families and businesses is our success. Read what they say about our precision.",
-    slide3Link: "See Testimonials",
+    // Services Section
+    servicesTitleMain: "Having a problem with a specific pest? We have the solution.",
 
-    // Why Choose Us (Flipping Slides)
+    // Why Choose Us
     whyTitle: "Why Choose German Advanced?",
     whySubtitle: "Our commitment to precision, safety, and effectiveness makes us your top choice for pest control.",
-    whyFeat1: "Free follow-ups after each service",
-    whyFeat2: "Over 10 years experience in Egypt",
-    whyFeat3: "Highly trained professional team",
-    whyFeat4: "Safe and certified pesticides",
-    whyFeat5: "Fast response within 24 hours",
-    statHappyClients: "Happy Clients",
-    statYearsExp: "Years of Experience",
-    statSuccessRate: "Treatment Success Rate",
-    statSupport: "Continuous Support",
-    whySlide1Title: "Completely Safe & Odorless Pesticides",
-    whySlide1Desc: "We strictly use eco-friendly formulas free from heavy chemical scents or toxic VOCs. Fully approved by the Egyptian Ministry of Health and WHO, our treatments are perfectly safe for infants, pregnant women, the elderly, and house pets. Zero need to pack up or leave your home.",
-    whySlide2Title: "Regular Follow-ups & Written Warranty",
-    whySlide2Desc: "Our work does not end with spraying. We supply a formal written warranty ranging from 3 to 12 months (up to 15 years for pre-construction termite proofing). This warranty schedule guarantees free check-ups and immediate responsive spraying if any pest re-emerges.",
-    whySlide3Title: "Fully Trained Professional Technical Team",
-    whySlide3Desc: "Our service staff comprises engineering-focused technical operators trained directly at the official Entomology and Pest Research Institute. Punctual, neat, and highly disciplined, they diagnose insect pathways and nesting entries to apply the fastest treatment.",
-    whySlide4Title: "Officially Licensed by the Ministry of Health",
-    whySlide4Desc: "We are a fully registered public health pest control enterprise. Adhering to the most strict German application codes, we calibrate all chemical dosages carefully to protect your household while executing maximum pest destruction.",
+    whyFeat1: "Specialized technical team",
+    whyFeat2: "Inspection & diagnosis before execution",
+    whyFeat3: "Approved public health pesticides",
+    whyFeat4: "Integrated pest management",
+    whyFeat5: "Post-service follow-up",
+    whyFeat6: "Service-based warranty",
 
-    // Pests Section
-    pestsTitle: "Pests We Deal With",
-    pestsSubtitle: "Each pest requires a specific scientific treatment protocol. Click \"View Details\" to read about causes and treatments, or contact us immediately.",
+    // How It Works
+    timelineTitle: "How It Works",
+    timelineSubtitle: "Our systematic steps to ensure complete and safe pest eradication",
+    timelineStep1Title: "Contact Us",
+    timelineStep1Desc: "Reach out to us via phone or WhatsApp to describe the issue and schedule an appointment.",
+    timelineStep2Title: "Inspection & Diagnosis",
+    timelineStep2Desc: "A specialized engineer inspects the site to identify the pest type and source.",
+    timelineStep3Title: "Pest Management Plan",
+    timelineStep3Desc: "We design a customized treatment plan tailored to the nature and scale of infestation.",
+    timelineStep4Title: "Service Execution",
+    timelineStep4Desc: "Applying certified pesticides with utmost precision and full safety precautions.",
+    timelineStep5Title: "Follow-Up & Warranty",
+    timelineStep5Desc: "Inspection visits to confirm successful treatment with a certified warranty.",
+
+    // Safety Section
+    safetyTitle: "Safety & Precaution",
+    safetyText: "We use certified public health pesticides, applied strictly according to manufacturer instructions and safety protocols tailored to each case.",
+
+    // General
     btnMore: "View Details",
-
-    // FAQs Section
     faqTitle: "Frequently Asked Questions",
     faqSubtitle: "Everything you need to know about our premium services, safety protocols, and warranty program.",
     faqQ1: "Are the pesticides safe for children, newborns, and pets?",
@@ -233,6 +229,41 @@ const translations = {
     testi3Comment: "Very respectful technical team who know their work. They inspected the villa, identified entry points for mice, sealed them, and placed safe baits. Fast results and great commitment.",
     testi4Name: "Mrs. Mona Al-Kurdi",
     testi4Comment: "Bedbugs were a nightmare for us after traveling. We called them, the team sprayed the bedding, did a follow-up after two weeks, and thank God, the problem is completely gone.",
+
+    // CTA
+    ctaTitle: "Having a Pest Problem? Let Us Solve It Today.",
+    ctaSubtitle: "Free initial inspection and rapid WhatsApp response at any time.",
+    ctaWhatsapp: "Book on WhatsApp",
+
+    // Footer
+    footerDesc: "German Advanced Company for Pest and Rodent Control — scientific, integrated solutions with precise German standards to protect your home, business, and family.",
+    footerContactHeader: "Contact Information",
+    footerAddress: "Address: Heliopolis, Cairo, Egypt",
+    footerPhones: "Additional Phones: 01002570405 / 01002577216",
+    footerFollow: "Follow Us",
+    copyright: "All Rights Reserved. German Advanced Pest Control.",
+
+    // Pest Detail Page specific
+    pestDetailTitle: "Treatment & Control Details",
+    pestBackBtn: "Back to Home",
+    pestCauseLabel: "Reasons for Appearance & Proliferation",
+    pestTreatmentLabel: "Our Engineering Protocol & Treatment Plan",
+    pestCtaText: "Are you suffering from this pest? Contact us right now for a free inspection, professional treatment, and guaranteed results.",
+
+    // About Us Page specific
+    aboutHeroTitle: "About German Advanced",
+    aboutHeroLead: "Established to provide integrated, scientific pest control solutions based on German quality and discipline.",
+    aboutSection1Title: "Our Vision & Values",
+    aboutSection1Text: "We believe public health starts with a clean, pest-free environment. We do not rely on random spraying, but follow precise scientific protocols to inspect, identify, and treat the source of the infestation, keeping you and your family safe.",
+    aboutSection2Title: "Certified & Safe Pesticides",
+    aboutSection2Text: "All chemical substances we use are approved by the Egyptian Ministry of Health and the World Health Organization (WHO). Our products are completely safe, free from irritating odors and harmful carcinogens, allowing spraying without leaving home.",
+    aboutCertTitle: "Our Certifications & Licenses",
+    aboutCert1: "Egyptian Ministry of Health license for public health pest control.",
+    aboutCert2: "Quality certifications for eco-friendly and safe chemical formulations.",
+    aboutCert3: "Fully trained staff with certifications from the Entomological Research Institute.",
+
+    // Services Page specific
+    servicesHeroTitle: "Our Comprehensive Services",
 
     // CTA
     ctaTitle: "Having a Pest Problem? Let Us Solve It Today.",
