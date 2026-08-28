@@ -605,145 +605,229 @@ button {
   font-size: 15.5px;
 }
 
-/* ===== سلايدر ميزات "لماذا نحن" المتقلب (Why Us Slideshow) ===== */
-.why-us {
+/* ===== قسم الإحصائيات المتحرك (Animated Stats Section) ===== */
+.stats-section {
   background: var(--surface);
   border-bottom: 1px solid var(--line);
-}
-
-.why-slider-layout {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.why-slider-images {
+  padding-block: 50px;
   position: relative;
-  height: 400px;
+  z-index: 10;
+  margin-top: -40px; /* Slight overlap with hero for cool aesthetic */
+  margin-inline: auto;
+  max-width: 1200px;
   border-radius: var(--radius);
-  overflow: hidden;
   box-shadow: var(--shadow);
   border: 1px solid var(--line);
 }
 
-.why-img-item {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: scale(0.96);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s ease;
-  z-index: 1;
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  text-align: center;
 }
 
-.why-img-item.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 2;
+@media (max-width: 992px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .stats-section {
+    margin-top: 0;
+    margin-inline: 24px;
+    border-radius: var(--radius);
+    padding-block: 40px;
+  }
 }
 
-.why-img-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+@media (max-width: 480px) {
+  .stats-section {
+    margin-inline: 16px;
+    padding-block: 30px;
+  }
+  .stats-grid {
+    gap: 16px;
+  }
 }
 
-.why-slider-cards {
+.stat-card {
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-.why-card-item {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 16px 24px;
-  cursor: pointer;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.why-card-item:hover {
-  border-color: var(--brand-green);
-}
-
-.why-card-item.active {
-  border-color: var(--brand-green);
-  background: var(--primary-light);
-  box-shadow: var(--shadow-sm);
-}
-
-.why-card-header {
-  display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
 }
 
-.why-card-num {
+.stat-number {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 15px;
-  color: var(--brand-green);
-  background: rgba(11, 143, 70, 0.08);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--secondary); /* الأزرق البترولي */
+  line-height: 1.1;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 2px;
+}
+
+.stat-prefix, .stat-suffix {
+  color: var(--signal); /* الذهبي الكهرماني */
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: clamp(13px, 1.8vw, 15px);
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* ===== كاروسيل ميزات "ليه تختارنا" التمريري اللانهائي (Why Us Marquee Carousel) ===== */
+.why-us {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.why-marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-block: 45px 30px;
+  direction: ltr; /* Force LTR layout for animation stability across languages */
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeMove 35s linear infinite;
+}
+
+/* Pause on hover */
+.why-marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding-inline-end: 40px; /* Space between groups */
+}
+
+.carousel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 260px;
   flex-shrink: 0;
+}
+
+/* بالونات المحادثة (Speech Bubbles) */
+.speech-bubble-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.bubble-frame {
+  width: 100%;
+  height: 180px;
+  background: var(--surface);
+  border: 4px solid var(--surface);
+  border-radius: 20px 20px 0 20px; /* Default RTL balloon shape */
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   transition: var(--transition);
 }
 
-.why-card-item.active .why-card-num {
-  background: var(--brand-green);
-  color: #fff;
+/* ذيل بالونة المحادثة */
+.bubble-tail {
+  position: absolute;
+  bottom: -15px;
+  right: 30px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 16px 0 0 16px;
+  border-color: var(--surface) transparent transparent transparent;
+  filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.04));
+  transition: var(--transition);
 }
 
-.why-card-item h3 {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--ink);
+/* دعم الاتجاه الأجنبي واللغات LTR */
+html[lang="en"] .bubble-frame,
+[dir="ltr"] .bubble-frame {
+  border-radius: 20px 20px 20px 0;
 }
 
-.why-card-item p {
-  font-size: 13.5px;
-  color: var(--ink-soft);
-  line-height: 1.6;
-  margin-top: 10px;
-  display: none; /* إخفاء النص للبطاقات غير النشطة لمظهر نظيف */
-  animation: fadeIn 0.4s ease forwards;
+html[lang="en"] .bubble-tail,
+[dir="ltr"] .bubble-tail {
+  right: auto;
+  left: 30px;
+  border-width: 16px 16px 0 0;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.why-card-item.active p {
-  display: block; /* إظهار فقط للبطاقة النشطة */
-}
-
-/* شريط التقدم الزمني للبطاقة النشطة */
-.slide-progress {
-  height: 3px;
-  background: rgba(11, 143, 70, 0.1);
-  border-radius: 1px;
-  margin-top: 12px;
-  overflow: hidden;
-  display: none;
-}
-
-.why-card-item.active .slide-progress {
-  display: block;
-}
-
-.progress-bar {
+.bubble-frame img {
+  width: 100%;
   height: 100%;
-  background: var(--brand-green);
-  width: 0%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item:hover .bubble-frame img {
+  transform: scale(1.08);
+}
+
+.carousel-item:hover .bubble-frame {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  border-color: var(--brand-green);
+}
+
+.carousel-item:hover .bubble-tail {
+  border-top-color: var(--brand-green);
+}
+
+/* كبسولات النص (Pills) */
+.feature-pill {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  max-width: 100%;
+  white-space: normal;
+  line-height: 1.55;
+  direction: rtl; /* Ensure correct text direction for Arabic inside forced LTR marquee container */
+}
+
+html[lang="en"] .feature-pill,
+[dir="ltr"] .feature-pill {
+  direction: ltr;
+}
+
+.carousel-item:hover .feature-pill {
+  background: var(--primary-light);
+  border-color: var(--brand-green);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(11, 143, 70, 0.12);
+}
+
+/* أنيميشن التمرير الأفقي المستمر */
+@keyframes marqueeMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* ===== قسم أقسام الحشرات (Pest Categories) ===== */

@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // تفعيل تأثير رذاذ الرش البصري في الهيرو
   initHeroMist();
 
-  // تفعيل سلايدر ميزات "لماذا تختارنا" التلقائي
-  initWhySlider();
+  // تفعيل عداد الإحصائيات التفاعلي عند التمرير
+  initStatsCounter();
 
   // تفعيل صفحة التفاصيل الديناميكية إذا كنا بها
   initPestDetailPage();
@@ -217,80 +217,56 @@ function initHeroMist() {
   }
 }
 
-// 6. سلايدر ميزات "ليه تختارنا" التلقائي الفلبينغ
-let whyActiveIndex = 0;
-let whySliderInterval = null;
-const whyDuration = 6000; // 6 ثوانٍ لكل شريحة ميزة
+// 6. عداد الإحصائيات التفاعلي عند التمرير (Animated Stats Counter)
+function initStatsCounter() {
+  const statsSection = document.querySelector(".stats-section");
+  if (!statsSection) return;
 
-function initWhySlider() {
-  const cards = document.querySelectorAll(".why-card-item");
-  if (cards.length === 0) return;
-
-  // تشغيل التايمر التلقائي
-  startWhyTimer();
-}
-
-function startWhyTimer() {
-  stopWhyTimer();
+  const statNumbers = document.querySelectorAll(".stat-number");
   
-  // إعادة تشغيل عداد التقدم للبطاقة النشطة
-  resetProgressBar(whyActiveIndex);
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        statNumbers.forEach(numEl => {
+          animateCounter(numEl);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
 
-  whySliderInterval = setInterval(() => {
-    const cards = document.querySelectorAll(".why-card-item");
-    let nextIdx = (whyActiveIndex + 1) % cards.length;
-    selectWhySlide(nextIdx);
-  }, whyDuration);
+  observer.observe(statsSection);
 }
 
-function stopWhyTimer() {
-  if (whySliderInterval) clearInterval(whySliderInterval);
+function animateCounter(el) {
+  const target = parseInt(el.getAttribute("data-target"), 10);
+  const prefix = el.getAttribute("data-prefix") || "";
+  const suffix = el.getAttribute("data-suffix") || "";
+  const duration = 1500; // 1.5 ثانية للتحريك السلس والسريع
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing: easeOutQuad للتأثير المريح للعين والتبطؤ في النهاية
+    const easeProgress = progress * (2 - progress);
+    const currentValue = easeProgress * target;
+    
+    // تنسيق الأرقام بـ commas للقيم الكبيرة (مثل 25,000)
+    const formatted = Math.floor(currentValue).toLocaleString();
+    
+    el.innerHTML = `${prefix ? `<span class="stat-prefix">${prefix}</span>` : ""}${formatted}${suffix ? `<span class="stat-suffix">${suffix}</span>` : ""}`;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.innerHTML = `${prefix ? `<span class="stat-prefix">${prefix}</span>` : ""}${target.toLocaleString()}${suffix ? `<span class="stat-suffix">${suffix}</span>` : ""}`;
+    }
+  }
+
+  requestAnimationFrame(update);
 }
-
-function selectWhySlide(idx) {
-  const cards = document.querySelectorAll(".why-card-item");
-  const imgs = document.querySelectorAll(".why-img-item");
-  if (cards.length === 0) return;
-
-  // إيقاف النشاط السابق
-  cards[whyActiveIndex].classList.remove("active");
-  imgs[whyActiveIndex].classList.remove("active");
-  
-  // تصفير شريط التقدم السابق
-  const prevBar = cards[whyActiveIndex].querySelector(".progress-bar");
-  if (prevBar) prevBar.style.width = "0%";
-
-  whyActiveIndex = idx;
-
-  // تنشيط الجديد
-  cards[whyActiveIndex].classList.add("active");
-  imgs[whyActiveIndex].classList.add("active");
-
-  // إعادة بناء التايمر والتقدم
-  startWhyTimer();
-}
-
-// تفعيل شريط التقدم بعرض تدريجي ناعم
-function resetProgressBar(idx) {
-  const cards = document.querySelectorAll(".why-card-item");
-  if (cards.length === 0 || !cards[idx]) return;
-
-  const bar = cards[idx].querySelector(".progress-bar");
-  if (!bar) return;
-
-  // تصفير فوري ثم البدء في الحركة لـ 6 ثوانٍ
-  bar.style.transition = "none";
-  bar.style.width = "0%";
-  
-  // Force reflow
-  bar.offsetHeight; 
-
-  bar.style.transition = `width ${whyDuration}ms linear`;
-  bar.style.width = "100%";
-}
-
-// جعل دالة تبديل الميزات متاحة في النطاق العام (global scope)
-window.selectWhySlide = selectWhySlide;
 
 // 7. الأسئلة الشائعة الأكورديون (FAQ Accordion)
 function toggleFaq(idx) {
