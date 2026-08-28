@@ -1078,6 +1078,24 @@ html[lang="en"] .testimonial-card,
   font-weight: 700;
 }
 
+/* أنيميشن التمرير الأفقي للتقييمات (من اليسار لليمين) */
+@keyframes testimonialsMarquee {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* دعم إيقاف الحركة لمستويات الوصول */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .testimonials-marquee-track {
+    animation-play-state: paused !important;
+  }
+}
+
 /* ===== قسم الأسئلة الشائعة الأكورديون (FAQ Accordion) ===== */
 .faqs {
   background: var(--bg);
