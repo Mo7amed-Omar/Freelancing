@@ -42,12 +42,6 @@
   --shadow-hover: 0 20px 48px -10px rgba(10, 25, 47, 0.2);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   
-  /* hazard strip in header: Dark Navy and Gold! */
-  --hazard: repeating-linear-gradient(
-      -45deg,
-      var(--brand-navy) 0px, var(--brand-navy) 12px,
-      var(--brand-gold) 12px, var(--brand-gold) 24px
-  );
 }
 
 /* تخصيص الخطوط للغة الإنجليزية */
@@ -62,6 +56,7 @@ html[lang="en"] {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -72,6 +67,7 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-align: start;
+  overflow-x: hidden;
 }
 
 img {
@@ -84,6 +80,15 @@ a {
   color: inherit;
   text-decoration: none;
   transition: var(--transition);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--brand-gold);
+  outline-offset: 3px;
 }
 
 ul, ol {
@@ -123,13 +128,6 @@ button {
   .section-padding {
     padding-block: 60px;
   }
-}
-
-/* شريط الخطر للتنبيه الهندسي */
-.hazard-strip {
-  height: 5px;
-  width: 100%;
-  background: var(--hazard);
 }
 
 /* ===== الهيدر الثابت (Header) ===== */
@@ -608,83 +606,6 @@ button {
   font-size: 15.5px;
 }
 
-/* ===== قسم الإحصائيات المتحرك (Animated Stats Section) ===== */
-.stats-section {
-  background: var(--surface);
-  border-bottom: 1px solid var(--line);
-  padding-block: 50px;
-  position: relative;
-  z-index: 10;
-  margin-top: -40px; /* Slight overlap with hero for cool aesthetic */
-  margin-inline: auto;
-  max-width: 1200px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--line);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  text-align: center;
-}
-
-@media (max-width: 992px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  .stats-section {
-    margin-top: 0;
-    margin-inline: 24px;
-    border-radius: var(--radius);
-    padding-block: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .stats-section {
-    margin-inline: 16px;
-    padding-block: 30px;
-  }
-  .stats-grid {
-    gap: 16px;
-  }
-}
-
-.stat-card {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.stat-number {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(28px, 4vw, 42px);
-  color: var(--secondary); /* الأزرق البترولي */
-  line-height: 1.1;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
-
-.stat-prefix, .stat-suffix {
-  color: var(--signal); /* الذهبي الكهرماني */
-  font-weight: 700;
-}
-
-.stat-label {
-  font-size: clamp(13px, 1.8vw, 15px);
-  color: var(--ink-soft);
-  font-weight: 600;
-}
-
 /* ===== كاروسيل ميزات "ليه تختارنا" التمريري اللانهائي (Why Us Marquee Carousel) ===== */
 .why-us {
   background: var(--surface);
@@ -937,6 +858,7 @@ html[lang="en"] .feature-pill,
   flex-grow: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -993,19 +915,16 @@ html[dir="ltr"] .pest-card:hover .pest-card-btn svg {
 .testimonials-marquee-container {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  scrollbar-width: thin;
   padding-block: 40px 15px;
   direction: ltr; /* Force LTR for animation stability */
+  scroll-snap-type: x proximity;
 }
 
 .testimonials-marquee-track {
   display: flex;
   width: max-content;
-  animation: testimonialsStopAndGo 12s ease-in-out infinite;
-}
-
-.testimonials-marquee-container:hover .testimonials-marquee-track {
-  animation-play-state: paused;
 }
 
 .testimonials-marquee-group {
@@ -1026,6 +945,16 @@ html[dir="ltr"] .pest-card:hover .pest-card-btn svg {
   width: 320px;
   flex-shrink: 0;
   direction: rtl; /* Reset text direction for content readability */
+  scroll-snap-align: start;
+}
+
+.testimonials-marquee-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.testimonials-marquee-container::-webkit-scrollbar-thumb {
+  background: var(--brand-gold);
+  border-radius: 4px;
 }
 
 html[lang="en"] .testimonial-card,
@@ -1078,14 +1007,6 @@ html[lang="en"] .testimonial-card,
 .testi-name {
   font-size: 14px;
   font-weight: 700;
-}
-
-@keyframes testimonialsStopAndGo {
-  0%, 20.8% { transform: translateX(0); }
-  25%, 45.8% { transform: translateX(-12.5%); }
-  50%, 70.8% { transform: translateX(-25%); }
-  75%, 95.8% { transform: translateX(-37.5%); }
-  100% { transform: translateX(-50%); }
 }
 
 /* دعم إيقاف الحركة لمستويات الوصول */
@@ -1308,8 +1229,6 @@ html[lang="en"] .testimonial-card,
   inset-inline: 0;
   z-index: 99;
   display: flex;
-  border-top: 3px solid transparent;
-  border-image: var(--hazard) 3;
   box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -1343,7 +1262,6 @@ html[lang="en"] .testimonial-card,
     bottom: 24px;
     flex-direction: column;
     gap: 12px;
-    border-top: none;
     box-shadow: none;
   }
   
@@ -1366,6 +1284,23 @@ html[lang="en"] .testimonial-card,
   color: #fff;
   padding-block: 50px 40px;
   border-bottom: 1px solid var(--line);
+}
+
+.pest-breadcrumb {
+  margin-bottom: 14px;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.pest-breadcrumb a {
+  color: var(--brand-gold);
+}
+
+.pest-detail-lead {
+  max-width: 620px;
+  margin: 14px auto 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 15px;
 }
 
 .pest-detail-body {
@@ -1393,6 +1328,18 @@ html[lang="en"] .testimonial-card,
   background: var(--surface);
   height: 380px;
   position: relative;
+}
+
+.pest-image-caption {
+  position: absolute;
+  inset-inline: 16px;
+  bottom: 16px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(10, 25, 47, 0.82);
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
 }
 
 .pest-detail-image-box img {
@@ -1438,6 +1385,57 @@ html[lang="en"] .testimonial-card,
   padding: 6px 14px;
   border-radius: 6px;
   margin-bottom: 16px;
+}
+
+.detail-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.detail-heading h2 {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+.detail-kicker {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--brand-gold-dark);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.detail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  border-radius: 14px;
+  background: var(--primary-light);
+  color: var(--brand-gold-dark);
+}
+
+.detail-icon-treatment {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.detail-copy p {
+  margin: 0 0 12px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.detail-copy p:last-child {
+  margin-bottom: 0;
 }
 
 .detail-block p {
@@ -1494,6 +1492,28 @@ html[lang="en"] .testimonial-card,
   margin-bottom: 16px;
   font-weight: 700;
   color: var(--primary);
+}
+
+.pest-trust-list {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.pest-trust-list li {
+  color: var(--ink-soft);
+  font-size: 13.5px;
+}
+
+.pest-trust-list li::before {
+  content: "✓";
+  margin-inline-end: 8px;
+  color: var(--brand-gold-dark);
+  font-weight: 800;
 }
 
 /* ===== صفحات من نحن، الخدمات، اتصل بنا ===== */
@@ -1567,15 +1587,46 @@ html[lang="en"] .testimonial-card,
 
 /* الخدمات */
 .services-list-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 30px;
 }
 
-@media (max-width: 768px) {
-  .services-list-grid {
-    grid-template-columns: 1fr;
-  }
+.service-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.service-group h2 {
+  font-size: 28px;
+  color: var(--primary);
+}
+
+.service-group-business {
+  padding: 34px;
+  background: var(--primary);
+  border-radius: var(--radius);
+}
+
+.service-group-business h2 {
+  color: var(--brand-gold);
+}
+
+.service-group-lead {
+  max-width: 680px;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.service-group-business .service-group-lead {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.service-group-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .service-item-card {
@@ -1598,6 +1649,29 @@ html[lang="en"] .testimonial-card,
   color: var(--ink-soft);
   font-size: 14.5px;
   line-height: 1.7;
+}
+
+.service-group-business .service-item-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: none;
+}
+
+.service-group-business .service-item-card h3 {
+  color: #fff;
+}
+
+.service-group-business .service-item-card p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 768px) {
+  .service-group-list {
+    grid-template-columns: 1fr;
+  }
+  .service-group-business {
+    padding: 24px;
+  }
 }
 
 /* اتصل بنا */
@@ -1804,6 +1878,9 @@ html[lang="en"] .testimonial-card,
   }
   .hero-actions .btn {
     width: 100%;
+  }
+  .testimonial-card {
+    width: min(320px, calc(100vw - 64px));
   }
   .spec-plates li {
     min-width: 130px;

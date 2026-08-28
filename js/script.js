@@ -35,9 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // تفعيل تأثير رذاذ الرش البصري في الهيرو
   initHeroMist();
 
-  // تفعيل عداد الإحصائيات التفاعلي عند التمرير
-  initStatsCounter();
-
   // تفعيل صفحة التفاصيل الديناميكية إذا كنا بها
   initPestDetailPage();
 
@@ -101,7 +98,7 @@ function renderPestGrid() {
   
   const unsplashImages = {
     bedbug: "images/bedbug.jpg",
-    cockroach: "images/cockroach.png",
+    cockroach: "images/cockroach.jpg",
     ticks: "images/ticks.png",
     termite: "images/termite.png",
     rodents: "images/rodents.png",
@@ -220,58 +217,7 @@ function initHeroMist() {
   }
 }
 
-// 6. عداد الإحصائيات التفاعلي عند التمرير (Animated Stats Counter)
-function initStatsCounter() {
-  const statsSection = document.querySelector(".stats-section");
-  if (!statsSection) return;
-
-  const statNumbers = document.querySelectorAll(".stat-number");
-  
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        statNumbers.forEach(numEl => {
-          animateCounter(numEl);
-        });
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  observer.observe(statsSection);
-}
-
-function animateCounter(el) {
-  const target = parseInt(el.getAttribute("data-target"), 10);
-  const prefix = el.getAttribute("data-prefix") || "";
-  const suffix = el.getAttribute("data-suffix") || "";
-  const duration = 1500; // 1.5 ثانية للتحريك السلس والسريع
-  const startTime = performance.now();
-
-  function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    
-    // Easing: easeOutQuad للتأثير المريح للعين والتبطؤ في النهاية
-    const easeProgress = progress * (2 - progress);
-    const currentValue = easeProgress * target;
-    
-    // تنسيق الأرقام بـ commas للقيم الكبيرة (مثل 25,000)
-    const formatted = Math.floor(currentValue).toLocaleString();
-    
-    el.innerHTML = `${prefix ? `<span class="stat-prefix">${prefix}</span>` : ""}${formatted}${suffix ? `<span class="stat-suffix">${suffix}</span>` : ""}`;
-
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      el.innerHTML = `${prefix ? `<span class="stat-prefix">${prefix}</span>` : ""}${target.toLocaleString()}${suffix ? `<span class="stat-suffix">${suffix}</span>` : ""}`;
-    }
-  }
-
-  requestAnimationFrame(update);
-}
-
-// 7. الأسئلة الشائعة الأكورديون (FAQ Accordion)
+// 6. الأسئلة الشائعة الأكورديون (FAQ Accordion)
 function toggleFaq(idx) {
   const panels = document.querySelectorAll(".faq-answer-panel");
   const icons = document.querySelectorAll(".faq-icon");
@@ -304,7 +250,7 @@ function toggleFaq(idx) {
 // جعل دالة الأكورديون متاحة عالمياً
 window.toggleFaq = toggleFaq;
 
-// 8. صفحة تفاصيل الحشرة المستقلة الديناميكية المثرية والمحسنة (pest.html)
+// 7. صفحة تفاصيل الحشرة المستقلة الديناميكية المثرية والمحسنة (pest.html)
 function initPestDetailPage() {
   const detailTitle = document.getElementById("pestDetailName");
   if (!detailTitle) return;
@@ -320,7 +266,7 @@ function initPestDetailPage() {
 
   const unsplashImagesLarge = {
     bedbug: "images/bedbug.jpg",
-    cockroach: "images/cockroach.png",
+    cockroach: "images/cockroach.jpg",
     ticks: "images/ticks.png",
     termite: "images/termite.png",
     rodents: "images/rodents.png",
@@ -348,13 +294,11 @@ function initPestDetailPage() {
 
   const pestCauseText = document.getElementById("pestDetailCause");
   if (pestCauseText) {
-    // تنسيق النص بنقاط أو فقرات تفصيلية مريحة
-    pestCauseText.innerHTML = cause.split(". ").map(p => `<p style="margin-bottom: 12px;">${p}.</p>`).join("");
+    pestCauseText.innerHTML = cause.split(/\.\s+/).filter(Boolean).map(paragraph => `<p>${paragraph.replace(/[.]$/, ".")}</p>`).join("");
   }
 
   const pestTreatmentText = document.getElementById("pestDetailTreatment");
   if (pestTreatmentText) {
-    // تنسيق خطوات المعالجة لتظهر بشكل بروتوكول هندسي مرقم وواضح
     const steps = treatment.split(": ");
     if (steps.length > 1) {
       let formattedText = "";
@@ -362,15 +306,14 @@ function initPestDetailPage() {
         if (i === 0) {
           formattedText += `<p style="font-weight: 700; margin-bottom: 16px; color: var(--primary);">${step}:</p><ol class="detail-steps-list">`;
         } else {
-          // جلب النص الفعلي للخطوة
           const cleanStep = step.replace(/ثانياً،|ثالثاً،|رابعاً،|أولاً،/g, "").trim();
-          formattedText += `<li style="margin-bottom: 14px; padding-inline-start: 10px; list-style-position: inside;">${cleanStep}</li>`;
+          formattedText += `<li>${cleanStep}</li>`;
         }
       });
       formattedText += "</ol>";
       pestTreatmentText.innerHTML = formattedText;
     } else {
-      pestTreatmentText.innerHTML = treatment.split(". ").map(p => `<p style="margin-bottom: 12px;">${p}.</p>`).join("");
+      pestTreatmentText.innerHTML = treatment.split(/\.\s+/).filter(Boolean).map(paragraph => `<p>${paragraph.replace(/[.]$/, ".")}</p>`).join("");
     }
   }
 
@@ -381,7 +324,7 @@ function initPestDetailPage() {
   }
 }
 
-// 9. تفعيل نموذج التواصل في صفحة اتصل بنا
+// 8. تفعيل نموذج التواصل في صفحة اتصل بنا
 function initContactForm() {
   const form = document.getElementById("contactUsForm");
   const successAlert = document.getElementById("contactSuccessAlert");
@@ -400,7 +343,7 @@ function initContactForm() {
   });
 }
 
-// 10. تشغيل قائمة الجوال المتجاوبة (Responsive Mobile Hamburger Menu)
+// 9. تشغيل قائمة الجوال المتجاوبة (Responsive Mobile Hamburger Menu)
 function initMobileMenu() {
   const menuToggle = document.getElementById("menuToggleBtn");
   const mainNav = document.querySelector(".main-nav");
