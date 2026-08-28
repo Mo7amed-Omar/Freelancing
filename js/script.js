@@ -97,7 +97,7 @@ function renderPestGrid() {
   grid.innerHTML = "";
   
   const unsplashImages = {
-    bedbug: "images/bedbug.png",
+    bedbug: "images/bedbug.jpg",
     cockroach: "images/cockroach.png",
     ticks: "images/ticks.png",
     termite: "images/termite.png",
@@ -119,7 +119,7 @@ function renderPestGrid() {
     card.innerHTML = `
       <div class="pest-image-container">
         <img src="${imgUrl}" alt="${name}" loading="lazy">
-        <div style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.9); padding: 6px; border-radius: var(--radius-sm); color: var(--brand-green); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm);">
+        <div class="pest-icon-badge">
           ${pestIcons[pest.id] || ''}
         </div>
       </div>
@@ -316,7 +316,7 @@ function initPestDetailPage() {
   }
 
   const unsplashImagesLarge = {
-    bedbug: "images/bedbug.png",
+    bedbug: "images/bedbug.jpg",
     cockroach: "images/cockroach.png",
     ticks: "images/ticks.png",
     termite: "images/termite.png",

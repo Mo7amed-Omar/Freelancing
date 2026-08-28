@@ -700,7 +700,7 @@ button {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marqueeMove 35s linear infinite;
+  animation: marqueeMove 20s linear infinite;
 }
 
 /* Pause on hover */
@@ -823,52 +823,89 @@ html[lang="en"] .feature-pill,
 /* أنيميشن التمرير الأفقي المستمر */
 @keyframes marqueeMove {
   0% {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
 }
 
 /* ===== قسم أقسام الحشرات (Pest Categories) ===== */
 .pests-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
 }
 
 .pest-card {
   background: var(--surface);
-  border-radius: var(--radius);
+  border-radius: 16px;
   border: 1px solid var(--line);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   transition: var(--transition);
 }
 
 .pest-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow);
-  border-color: var(--brand-blue);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: var(--brand-green);
 }
 
 .pest-image-container {
-  height: 180px;
+  height: 220px;
   overflow: hidden;
   background: var(--bg);
   position: relative;
+}
+
+.pest-image-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .pest-image-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .pest-card:hover .pest-image-container img {
-  transform: scale(1.08);
+  transform: scale(1.1);
+}
+
+/* أيقونة الطفو الدائرية الفخمة */
+.pest-icon-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--brand-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: var(--transition);
+  z-index: 2;
+}
+
+.pest-card:hover .pest-icon-badge {
+  background: var(--brand-green);
+  color: #fff;
+  transform: rotate(15deg) scale(1.05);
+  border-color: var(--brand-green);
 }
 
 .pest-card-body {
@@ -879,42 +916,68 @@ html[lang="en"] .feature-pill,
 }
 
 .pest-card h3 {
-  font-size: 19px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--ink);
+  transition: var(--transition);
+}
+
+.pest-card:hover h3 {
+  color: var(--primary);
 }
 
 .pest-card p {
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--ink-soft);
-  margin-bottom: 20px;
+  line-height: 1.6;
+  margin-bottom: 24px;
   flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 67px; /* تثبيت الارتفاع لضمان محاذاة الأزرار بدقة هندسية */
 }
 
 .pest-card-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--brand-green);
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--primary);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 14px;
-  align-self: flex-start;
+  font-size: 13.5px;
+  border-radius: var(--radius-sm);
   transition: var(--transition);
+  cursor: pointer;
+}
+
+.pest-card:hover .pest-card-btn {
+  background: var(--brand-blue);
+  color: #fff;
+  border-color: var(--brand-blue);
 }
 
 .pest-card-btn svg {
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 html[dir="rtl"] .pest-card-btn svg {
   transform: scaleX(-1);
 }
 
-html[dir="rtl"] .pest-card-btn:hover svg {
+/* عند الحوم، يتحرك السهم للأمام حسب اتجاه الصفحة */
+html[dir="rtl"] .pest-card:hover .pest-card-btn svg {
   transform: scaleX(-1) translateX(-4px);
 }
 
-html[dir="ltr"] .pest-card-btn:hover svg {
+html[dir="ltr"] .pest-card:hover .pest-card-btn svg {
   transform: translateX(4px);
 }
 
@@ -925,10 +988,28 @@ html[dir="ltr"] .pest-card-btn:hover svg {
   border-bottom: 1px solid var(--line);
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+.testimonials-marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-block: 40px 15px;
+  direction: ltr; /* Force LTR for animation stability */
+}
+
+.testimonials-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: testimonialsMarquee 28s linear infinite;
+}
+
+.testimonials-marquee-container:hover .testimonials-marquee-track {
+  animation-play-state: paused;
+}
+
+.testimonials-marquee-group {
+  display: flex;
   gap: 24px;
+  padding-inline-end: 24px;
 }
 
 .testimonial-card {
@@ -940,11 +1021,20 @@ html[dir="ltr"] .pest-card-btn:hover svg {
   flex-direction: column;
   gap: 16px;
   transition: var(--transition);
+  width: 320px;
+  flex-shrink: 0;
+  direction: rtl; /* Reset text direction for content readability */
+}
+
+html[lang="en"] .testimonial-card,
+[dir="ltr"] .testimonial-card {
+  direction: ltr;
 }
 
 .testimonial-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow);
+  border-color: var(--brand-blue);
 }
 
 .rating {
