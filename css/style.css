@@ -616,17 +616,21 @@ button {
 .why-marquee-container {
   position: relative;
   width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
   overflow-y: hidden;
   padding-block: 45px 30px;
   direction: ltr; /* Force LTR layout for animation stability across languages */
-  scroll-snap-type: x proximity;
-  scrollbar-width: thin;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
+  animation: featureCarousel 21s steps(5, end) infinite;
+}
+
+.why-marquee-container:hover .marquee-track,
+.why-marquee-container:focus-within .marquee-track {
+  animation-play-state: paused;
 }
 
 .marquee-group {
@@ -642,16 +646,18 @@ button {
   align-items: center;
   width: 260px;
   flex-shrink: 0;
-  scroll-snap-align: start;
 }
 
-.why-marquee-container::-webkit-scrollbar {
-  height: 8px;
+@keyframes featureCarousel {
+  from { transform: translateX(calc(-4 * (100vw - 63px + 40px))); }
+  to { transform: translateX(0); }
 }
 
-.why-marquee-container::-webkit-scrollbar-thumb {
-  background: var(--brand-gold);
-  border-radius: 4px;
+@media (min-width: 769px) {
+  @keyframes featureCarousel {
+    from { transform: translateX(-1200px); }
+    to { transform: translateX(0); }
+  }
 }
 
 /* بالونات المحادثة (Speech Bubbles) */
