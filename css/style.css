@@ -1908,17 +1908,32 @@ html[lang="en"] .testimonial-card,
     position: fixed;
     top: 0;
     right: 0;
-    width: min(310px, 85vw);
+    width: min(300px, 82vw);
     height: 100dvh;
-    background: var(--brand-navy);
-    padding: 80px 24px 32px;
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: -6px 0 40px rgba(0, 0, 0, 0.35);
+    background: #0A192F;
+    padding: 72px 20px 40px;
+    border-left: 2px solid var(--brand-gold);
+    box-shadow: -8px 0 48px rgba(0, 0, 0, 0.5);
     z-index: 998;
-    gap: 4px;
+    gap: 2px;
     transform: translateX(100%);
     transition: transform 0.32s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow-y: auto;
+  }
+  /* Gold top accent bar + menu label */
+  .main-nav::before {
+    content: 'القائمة';
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 11px;
+    color: var(--brand-gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 18px 18px;
+    border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+    margin-bottom: 12px;
+    opacity: 0.9;
   }
   html[dir="ltr"] .main-nav {
     right: auto;
@@ -1932,19 +1947,30 @@ html[lang="en"] .testimonial-card,
     transform: translateX(0) !important;
   }
   .main-nav a {
-    padding: 13px 16px;
+    padding: 14px 18px;
     border-radius: var(--radius-sm);
-    color: rgba(255, 255, 255, 0.85) !important;
-    font-size: 15.5px;
+    color: #fff !important;
+    font-size: 16px;
+    font-weight: 700;
     width: 100%;
     margin: 0;
-    border-bottom: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transition: background 0.18s ease, color 0.18s ease;
+    letter-spacing: 0.2px;
+  }
+  .main-nav a:last-child {
+    border-bottom: none;
   }
   .main-nav a:hover,
   .main-nav a.active {
-    background: rgba(197, 168, 128, 0.12);
+    background: rgba(197, 168, 128, 0.18);
     color: var(--brand-gold) !important;
+    padding-right: 22px;
+  }
+  html[dir="ltr"] .main-nav a:hover,
+  html[dir="ltr"] .main-nav a.active {
+    padding-right: 18px;
+    padding-left: 22px;
   }
   .main-nav a::after {
     display: none;
@@ -2001,6 +2027,37 @@ html[lang="en"] .testimonial-card,
   }
   .why-slider-images {
     height: 250px;
+  }
+
+  /* زر الإغلاق داخل لوحة المنيو */
+  .nav-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(197, 168, 128, 0.12);
+    border: 1px solid rgba(197, 168, 128, 0.3);
+    border-radius: 8px;
+    color: var(--brand-gold);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+    flex-shrink: 0;
+  }
+  .nav-close-btn:hover {
+    background: rgba(197, 168, 128, 0.25);
+    transform: scale(1.1);
+  }
+  .nav-close-btn:active {
+    transform: scale(0.95);
+  }
+  html[dir="ltr"] .nav-close-btn {
+    right: auto;
+    left: 20px;
   }
 }
 

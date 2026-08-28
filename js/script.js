@@ -938,6 +938,16 @@ function initMobileMenu() {
     document.body.appendChild(backdrop);
   }
 
+  // Inject close (X) button inside the nav panel
+  let closeBtn = mainNav.querySelector(".nav-close-btn");
+  if (!closeBtn) {
+    closeBtn = document.createElement("button");
+    closeBtn.className = "nav-close-btn";
+    closeBtn.setAttribute("aria-label", "إغلاق القائمة");
+    closeBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="2" y1="2" x2="16" y2="16"/><line x1="16" y1="2" x2="2" y2="16"/></svg>`;
+    mainNav.prepend(closeBtn);
+  }
+
   function openMenu() {
     menuToggle.setAttribute("aria-expanded", "true");
     menuToggle.classList.add("active");
@@ -958,6 +968,9 @@ function initMobileMenu() {
     mainNav.classList.contains("active") ? closeMenu() : openMenu();
   });
 
+  // Close button inside panel
+  closeBtn.addEventListener("click", closeMenu);
+
   // Close on backdrop click
   backdrop.addEventListener("click", closeMenu);
 
@@ -974,6 +987,7 @@ function initMobileMenu() {
     link.addEventListener("click", closeMenu);
   });
 }
+
 
 /* ==========================================================================
    NEW: Premium UI Enhancement Functions
