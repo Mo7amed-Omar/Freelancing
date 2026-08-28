@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الشركة الألمانية المتقدمة لمكافحة الحشرات | حماية بدقة هندسية</title>
+  <meta name="description" content="الشركة الألمانية المتقدمة لمكافحة الحشرات والقوارض — مكافحة احترافية بمعايير ألمانية دقيقة، ترخيص وزارة الصحة، وضمان معتمد.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== الشريط العلوي الجمالي ===== -->
+  <div class="hazard-strip"></div>
+
+  <!-- ===== الهيدر (Header) ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="الرئيسية">
+        <!-- شعار الشركة الأساسي مع Fallback مرن بتصميم SVG متطابق -->
+        <img src="images/logo.png" alt="الشركة الألمانية" class="brand-logo" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
+        
+        <div id="logoFallback" class="brand-mark" style="display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 100 100" width="46" height="46" fill="none">
+            <path d="M50 12 L85 40 L85 80 L15 80 L15 40 Z" stroke="var(--brand-blue)" stroke-width="5" stroke-linejoin="round"/>
+            <rect x="42" y="28" width="16" height="14" stroke="var(--brand-blue)" stroke-width="3" fill="none"/>
+            <path d="M50 28 v14 M42 35 h16" stroke="var(--brand-blue)" stroke-width="1.5"/>
+            <circle cx="50" cy="60" r="8" fill="var(--brand-green)"/>
+            <path d="M50 48v8 M42 56l16 8 M42 64l16-8 M36 60h28" stroke="var(--brand-green)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="brand-text">
+          <strong data-i18n="brandTitle">الشركة الألمانية المتقدمة</strong>
+          <small data-i18n="brandSubtitle">لمكافحة الحشرات والقوارض</small>
+        </div>
+      </a>
+
+      <!-- القائمة الرئيسية للتنقل -->
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a href="index.html" data-i18n="navHome">الرئيسية</a>
+        <a href="services.html" data-i18n="navServices">خدماتنا</a>
+        <a href="about.html" data-i18n="navAbout">من نحن</a>
+        <a href="contact.html" data-i18n="navContact">اتصل بنا</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="langToggleBtn" class="lang-toggle" aria-label="تبديل اللغة">English 🌐</button>
+        <a class="tel-link" href="tel:01150087555">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="telText">01150087555</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== قسم البطل (Hero Section) ===== -->
+  <section class="hero">
+    <!-- خلفية حقيقية لمهندس رش حشرات مع تأثير تكبير بطيء (Ken Burns Effect) -->
+    <div class="hero-image-bg" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-background-anim" aria-hidden="true"></div>
+    
+    <!-- تأثير جزيئات رذاذ الرش الجمالي (Spray Mist Effect) -->
+    <div class="hero-mist-overlay" id="heroMistOverlay" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <p class="eyebrow" data-i18n="heroEyebrow">GERMAN PEST CONTROL SYSTEM — نظام مكافحة بمواصفات ألمانية</p>
+      <h1>
+        <span data-i18n="heroTitle">حماية منزلك وعائلتك من الحشرات، بـ</span>
+        <span class="hl"><span data-i18n="heroTitleHighlight">دقة هندسية ألمانية</span></span>
+      </h1>
+      <p class="hero-lead" data-i18n="heroLead">
+        فريق عمل مرخّص من وزارة الصحة، خطط علاجية مدروسة لكل حالة، ومتابعة مضمونة حتى القضاء التام على المشكلة — بمبيدات آمنة تماماً على أطفالك وحيواناتك الأليفة.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://wa.me/201150087555?text=مرحباً، أريد الاستفسار عن خدمة مكافحة الحشرات" target="_blank" rel="noopener" class="btn btn-whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9.8 9.4 8.4 9.1 7.8c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.8 14.7 3.3 13.4 3.3 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.9 8.7-8.7 8.7z"/></svg>
+          <span data-i18n="btnWhatsapp">واتساب فوري</span>
+        </a>
+        <a href="tel:01150087555" class="btn btn-call">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="btnCall">اتصل الآن</span>
+        </a>
+      </div>
+
+      <ul class="spec-plates">
+        <li>
+          <strong data-i18n="spec24_7_val">24/7</strong>
+          <span data-i18n="spec24_7_lbl">خدمة طوال أيام الأسبوع</span>
+        </li>
+        <li>
+          <strong data-i18n="specLic_val">ترخيص رسمي</strong>
+          <span data-i18n="specLic_lbl">معتمد من وزارة الصحة</span>
+        </li>
+        <li>
+          <strong data-i18n="specGuarantee_val">ضمان حقيقي</strong>
+          <span data-i18n="specGuarantee_lbl">متابعة مجانية بعد الخدمة</span>
+        </li>
+      </ul>
+
+      <!-- ===== سلايدر الهيرو ثلاثي الشرائح ===== -->
+      <div class="hero-slider-container">
+        <div class="slider-wrapper">
+          <!-- الشريحة الأولى -->
+          <div class="slide-item active">
+            <div class="slide-content">
+              <h3 data-i18n="slide1Title">خدماتنا المتميزة</h3>
+              <p data-i18n="slide1Desc">نقدم حلولاً متكاملة لمكافحة الآفات للمنازل، المطاعم، والشركات مع ضمان معتمد.</p>
+              <a href="services.html" class="slide-link" data-i18n="slide1Link">عرض الخدمات</a>
+            </div>
+          </div>
+          <!-- الشريحة الثانية -->
+          <div class="slide-item">
+            <div class="slide-content">
+              <h3 data-i18n="slide2Title">لماذا تختارنا؟</h3>
+              <p data-i18n="slide2Desc">نعمل بجدية وانضباط ألماني يضمن القضاء التام على الحشرات بأمان تام وبدون روائح.</p>
+              <a href="about.html" class="slide-link" data-i18n="slide2Link">اقرأ عن معاييرنا</a>
+            </div>
+          </div>
+          <!-- الشريحة الثالثة -->
+          <div class="slide-item">
+            <div class="slide-content">
+              <h3 data-i18n="slide3Title">آراء عملائنا</h3>
+              <p data-i18n="slide3Desc">ثقة مئات الأسر والشركات هي سر نجاحنا. شاهد ماذا قالوا عن خدماتنا ودقتنا.</p>
+              <a href="#testimonials" class="slide-link" data-i18n="slide3Link">شاهد التقييمات</a>
+            </div>
+          </div>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== قسم "ليه تختار الشركة الألمانية المتقدمة؟" (Why Us Slideshow) ===== -->
+  <section class="why-us section-padding" id="why-us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="navAbout">من نحن</span>
+        <h2 class="section-title" data-i18n="whyTitle">ليه تختار الشركة الألمانية المتقدمة؟</h2>
+        <p class="section-lead" data-i18n="whySubtitle">التزامنا بالدقة والسلامة والفعالية يجعلنا الخيار الأول دائماً للقضاء على الآفات.</p>
+      </div>
+
+      <!-- عرض سلايدر الصور والبطاقات المتقلبة تلقائياً -->
+      <div class="why-slider-layout">
+        
+        <!-- العمود الأيسر: الصور المتقلبة تلقائياً -->
+        <div class="why-slider-images">
+          <!-- صورة مبيدات آمنة -->
+          <div class="why-img-item active" id="whyImg0">
+            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=80" alt="Safe Pesticides">
+          </div>
+          <!-- صورة متابعات مجانية وضمان -->
+          <div class="why-img-item" id="whyImg1">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop&q=80" alt="Warranty & Follow-up">
+          </div>
+          <!-- صورة فريق فني مدرب -->
+          <div class="why-img-item" id="whyImg2">
+            <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?w=800&auto=format&fit=crop&q=80" alt="Trained Team">
+          </div>
+          <!-- صورة ترخيص وزارة الصحة -->
+          <div class="why-img-item" id="whyImg3">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80" alt="Official License">
+          </div>
+        </div>
+
+        <!-- العمود الأيمن: البطاقات التوضيحية المتقلبة -->
+        <div class="why-slider-cards">
+          <!-- البطاقة 1 -->
+          <div class="why-card-item active" id="whyCard0" onclick="selectWhySlide(0)">
+            <div class="why-card-header">
+              <span class="why-card-num">01</span>
+              <h3 data-i18n="whySlide1Title">مبيدات آمنة تماماً وبدون رائحة</h3>
+            </div>
+            <p data-i18n="whySlide1Desc">نستخدم مبيدات صديقة للبيئة خالية من الروائح النفاذة والمواد الطيارة السامة، مصرحة بالكامل من وزارة الصحة المصرية ومنظمة الصحة العالمية.</p>
+            <div class="slide-progress"><div class="progress-bar"></div></div>
+          </div>
+
+          <!-- البطاقة 2 -->
+          <div class="why-card-item" id="whyCard1" onclick="selectWhySlide(1)">
+            <div class="why-card-header">
+              <span class="why-card-num">02</span>
+              <h3 data-i18n="whySlide2Title">متابعات دورية وضمان مكتوب</h3>
+            </div>
+            <p data-i18n="whySlide2Desc">لا تنتهي علاقتنا بك بمجرد الرش. نقدم ضماناً معتمداً ومكتوباً لفترات تتراوح من ٣ أشهر وحتى سنة كاملة، مع جدول زيارات متابعة مجانية.</p>
+            <div class="slide-progress"><div class="progress-bar"></div></div>
+          </div>
+
+          <!-- البطاقة 3 -->
+          <div class="why-card-item" id="whyCard2" onclick="selectWhySlide(2)">
+            <div class="why-card-header">
+              <span class="why-card-num">03</span>
+              <h3 data-i18n="whySlide3Title">فريق فني مدرب على أعلى مستوى</h3>
+            </div>
+            <p data-i18n="whySlide3Desc">يضم فريقنا نخبة من الكوادر الفنية المدربة هندسياً وعلمياً في معهد بحوث الحشرات والآفات، مع انضباط والتزام بالمواعيد.</p>
+            <div class="slide-progress"><div class="progress-bar"></div></div>
+          </div>
+
+          <!-- البطاقة 4 -->
+          <div class="why-card-item" id="whyCard3" onclick="selectWhySlide(3)">
+            <div class="why-card-header">
+              <span class="why-card-num">04</span>
+              <h3 data-i18n="whySlide4Title">ترخيص رسمي من وزارة الصحة</h3>
+            </div>
+            <p data-i18n="whySlide4Desc">نحن شركة مسجلة رسمياً ومرخصة لمزاولة أعمال مكافحة آفات الصحة العامة والتعقيم وفق البروتوكولات الألمانية الصارمة.</p>
+            <div class="slide-progress"><div class="progress-bar"></div></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== قسم أقسام الحشرات (Pest Categories) ===== -->
+  <section class="pests section-padding" id="pests">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="navServices">الخدمات</span>
+        <h2 class="section-title" data-i18n="pestsTitle">الآفات التي نتعامل معها</h2>
+        <p class="section-lead" data-i18n="pestsSubtitle">كل نوع من الحشرات له بروتوكول علاج علمي مخصص. اضغط على "عرض المزيد" لمعرفة التفاصيل والبدء في العلاج الفوري.</p>
+      </div>
+
+      <!-- شبكة عرض الحشرات الـ 9 (يتم توليدها تلقائياً بالكامل في script.js) -->
+      <div class="pests-grid" id="pestGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== قسم آراء العملاء (Testimonials) ===== -->
+  <section class="testimonials section-padding" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="slide3Title">آراء عملائنا</span>
+        <h2 class="section-title" data-i18n="testiTitle">آراء عملائنا</h2>
+        <p class="section-lead" data-i18n="testiSubtitle">فخورون بثقة عملائنا في خدمتنا المتميزة ومستعدون دائماً لتلبية توقعاتكم.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <!-- التقييم الأول -->
+        <div class="testimonial-card">
+          <div class="rating">★★★★★</div>
+          <p class="testi-text" data-i18n="testi1Comment">احترافية حقيقية! عانينا من النمل الأبيض لسنوات، وجربنا شركات كتير، لكن الشركة الألمانية المتقدمة حلت المشكلة تماماً بحقن التربة والضمان. شكراً لكم.</p>
+          <div class="testi-meta">
+            <div class="testi-avatar">أ</div>
+            <div class="testi-name" data-i18n="testi1Name">المهندس أحمد مصطفى</div>
+          </div>
+        </div>
+        <!-- التقييم الثاني -->
+        <div class="testimonial-card">
+          <div class="rating">★★★★★</div>
+          <p class="testi-text" data-i18n="testi2Comment">خدمة ممتازة ومواعيد دقيقة جداً. رشت الشقة ضد الصراصير والمبيدات مالهاش أي ريحة فعلاً، وما اضطرناش نسيب البيت خالص. بقالنا 6 شهور والبيت نظيف.</p>
+          <div class="testi-meta">
+            <div class="testi-avatar">س</div>
+            <div class="testi-name" data-i18n="testi2Name">أ/ سارة عبد الرحمن</div>
+          </div>
+        </div>
+        <!-- التقييم الثالث -->
+        <div class="testimonial-card">
+          <div class="rating">★★★★★</div>
+          <p class="testi-text" data-i18n="testi3Comment">فريق فني محترم جداً وفاهم شغله. عاينوا الفيلا وحددوا أماكن دخول الفئران وسدوها وحطوا طعوم آمنة. النتيجة سريعة والالتزام ممتاز.</p>
+          <div class="testi-meta">
+            <div class="testi-avatar">خ</div>
+            <div class="testi-name" data-i18n="testi3Name">د/ خالد الشريف</div>
+          </div>
+        </div>
+        <!-- التقييم الرابع -->
+        <div class="testimonial-card">
+          <div class="rating">★★★★★</div>
+          <p class="testi-text" data-i18n="testi4Comment">بق الفراش كان كابوس بالنسبة لنا بعد السفر. اتصلنا بيهم وجاء الفريق ورش المفروشات وعمل متابعة بعد أسبوعين والحمد لله المشكلة انتهت تماماً.</p>
+          <div class="testi-meta">
+            <div class="testi-avatar">م</div>
+            <div class="testi-name" data-i18n="testi4Name">أ/ منى الكردي</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== قسم الأسئلة الشائعة (Collapsible FAQs Accordion) ===== -->
+  <section class="faqs section-padding" id="faqs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="faqTitle">الأسئلة الشائعة</span>
+        <h2 class="section-title" data-i18n="faqTitle">الأسئلة الشائعة</h2>
+        <p class="section-lead" data-i18n="faqSubtitle">كل ما تود معرفته عن خدماتنا، مبيداتنا، ونظام الضمان والمتابعة.</p>
+      </div>
+
+      <div class="faq-accordion">
+        <!-- السؤال 1 -->
+        <div class="faq-item">
+          <button class="faq-question-btn" onclick="toggleFaq(0)">
+            <span data-i18n="faqQ1">هل المبيدات المستخدمة آمنة على الأطفال والحيوانات؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel" id="faqAnswer0">
+            <p data-i18n="faqA1">نعم، جميع مبيداتنا معتمدة ومسجلة بوزارة الصحة المصرية ومطابقة لمواصفات منظمة الصحة العالمية (WHO). نستخدم تركيبات مائية متطورة عديمة الرائحة وآمنة تماماً.</p>
+          </div>
+        </div>
+        
+        <!-- السؤال 2 -->
+        <div class="faq-item">
+          <button class="faq-question-btn" onclick="toggleFaq(1)">
+            <span data-i18n="faqQ2">ما هي مدة الضمان وكيف تفعل المتابعات؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel" id="faqAnswer1">
+            <p data-i18n="faqA2">نوفر ضماناً مكتوباً ومختوماً يبدأ من ٣ أشهر ويصل لسنة كاملة، وعقود النمل الأبيض تصل لـ ١٥ سنة. خلال فترة الضمان نقوم بزيارات فحص دورية مجانية.</p>
+          </div>
+        </div>
+
+        <!-- السؤال 3 -->
+        <div class="faq-item">
+          <button class="faq-question-btn" onclick="toggleFaq(2)">
+            <span data-i18n="faqQ3">هل يجب علينا مغادرة المنزل أو إخلاء المطبخ؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel" id="faqAnswer2">
+            <p data-i18n="faqA3">بالتأكيد لا. بفضل استخدام مبيدات الجل الحديثة والرش المستهدف للمنافذ والشقوق، لا يطلب منك مغادرة المكان أو إخلاء المطبخ أو إزالة الأواني والأطعمة.</p>
+          </div>
+        </div>
+
+        <!-- السؤال 4 -->
+        <div class="faq-item">
+          <button class="faq-question-btn" onclick="toggleFaq(3)">
+            <span data-i18n="faqQ4">كيف يتم تحديد تكلفة الخدمة وهل المعاينة مجانية؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel" id="faqAnswer3">
+            <p data-i18n="faqA4">نعم، المعاينة الأولى والتشخيص الأولي مجانيان تماماً. يتم احتساب تكلفة المعالجة بناءً على مساحة المنشأة، نوع الحشرة المستهدفة، وشدة انتشار الإصابة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== نداء عمل أخير (CTA) ===== -->
+  <section class="cta-section">
+    <div class="container cta-inner">
+      <h2 data-i18n="ctaTitle">عندك مشكلة حشرات؟ خلّينا نحلّها اليوم.</h2>
+      <p data-i18n="ctaSubtitle">معاينة أولى مجانية، ورد سريع على واتساب في أي وقت.</p>
+      
+      <div class="hero-actions">
+        <a href="https://wa.me/201150087555?text=مرحباً، أريد الاستفسار عن خدمة مكافحة الحشرات" target="_blank" rel="noopener" class="btn btn-whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9.8 9.4 8.4 9.1 7.8c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.8 14.7 3.3 13.4 3.3 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.9 8.7-8.7 8.7z"/></svg>
+          <span data-i18n="ctaWhatsapp">احجز على واتساب</span>
+        </a>
+        <a href="tel:01150087555" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="telText">01150087555</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== الفوتر (Footer) ===== -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="container footer-grid">
+        <!-- عمود العلامة التجارية -->
+        <div class="footer-brand-info">
+          <a href="index.html" class="brand" style="gap: 8px;">
+            <div class="brand-mark" style="display: flex; align-items: center; justify-content: center; color: var(--brand-blue);">
+              <svg viewBox="0 0 100 100" width="36" height="36" fill="none">
+                <path d="M50 12 L85 40 L85 80 L15 80 L15 40 Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+                <circle cx="50" cy="60" r="8" fill="var(--brand-green)"/>
+              </svg>
+            </div>
+            <strong style="color: #fff; font-size: 15px;" data-i18n="brandTitle">الشركة الألمانية المتقدمة</strong>
+          </a>
+          <p data-i18n="footerDesc">الشركة الألمانية المتقدمة لمكافحة الحشرات والقوارض — حلول علمية متكاملة بمعايير ألمانية دقيقة، لحماية منزلك وعملك وعائلتك.</p>
+          
+          <!-- أيقونات السوشيال ميديا الهادئة -->
+          <div class="social-links">
+            <!-- فيسبوك -->
+            <a href="https://www.facebook.com/share/1JVAD7kqsM/" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <!-- تيك توك -->
+            <a href="https://www.tiktok.com/@user5372522883397?_r=1&_t=ZS-99DZus19KHH" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            </a>
+            <!-- انستجرام -->
+            <a href="#" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram" id="footerInstaLink">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- عمود روابط سريعة -->
+        <div class="footer-col">
+          <h4 data-i18n="navServices">الخدمات</h4>
+          <div class="footer-links">
+            <a href="services.html" data-i18n="navServices">عرض الخدمات</a>
+            <a href="about.html" data-i18n="navAbout">من نحن</a>
+            <a href="contact.html" data-i18n="navContact">اتصل بنا</a>
+          </div>
+        </div>
+
+        <!-- عمود التواصل والاتصال -->
+        <div class="footer-col">
+          <h4 data-i18n="footerContactHeader">معلومات التواصل</h4>
+          <div class="footer-contact-list">
+            <a href="tel:01150087555">📞 01150087555</a>
+            <a href="https://wa.me/201150087555" target="_blank" rel="noopener">💬 WhatsApp: 01150087555</a>
+            <p data-i18n="footerPhones">الهواتف الإضافية: 01002570405 / 01002577216</p>
+            <p data-i18n="footerAddress">العنوان: مصر الجديدة، القاهرة، مصر</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> <span data-i18n="copyright">جميع الحقوق محفوظة. الشركة الألمانية المتقدمة لمكافحة الحشرات.</span></p>
+    </div>
+  </footer>
+
+  <!-- ===== الشريط العائم السريع للموبايل وديسكتوب ===== -->
+  <div class="sticky-bar" role="region" aria-label="اتصال سريع">
+    <a href="tel:01150087555" class="sticky-btn sticky-call" aria-label="اتصال مباشر">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span data-i18n="stickyCall">اتصل الآن</span>
+    </a>
+    <a href="https://wa.me/201150087555?text=مرحباً، أريد الاستفسار عن خدمة مكافحة الحشرات" target="_blank" rel="noopener" class="sticky-btn sticky-whatsapp" aria-label="مراسلة واتساب">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9.8 9.4 8.4 9.1 7.8c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.8 14.7 3.3 13.4 3.3 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.9 8.7-8.7 8.7z"/></svg>
+      <span data-i18n="stickyWhatsapp">واتساب</span>
+    </a>
+  </div>
+
+  <script src="js/translations.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
