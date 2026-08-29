@@ -1902,118 +1902,144 @@ html[lang="en"] .testimonial-card,
     padding-block: 10px;
     position: relative;
   }
+
+  /* ===== Mobile Navigation Drawer ===== */
   .main-nav {
+    /* Override desktop flex */
     display: flex !important;
     flex-direction: column;
+    gap: 4px;
+
+    /* Drawer positioning */
     position: fixed;
     top: 0;
     right: 0;
-    width: min(300px, 82vw);
+    width: min(290px, 80vw);
+    height: 100%;
     height: 100dvh;
-    background: #0A192F;
-    padding: 72px 20px 40px;
-    border-left: 2px solid var(--brand-gold);
-    box-shadow: -8px 0 48px rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    gap: 2px;
-    transform: translateX(100%);
-    transition: transform 0.32s cubic-bezier(0.25, 0.8, 0.25, 1);
-    overflow-y: auto;
-    /* إصلاح لون النص — يُبطل القيمة الموروثة من desktop */
-    color: #fff;
-    font-size: 16px;
+
+    /* Visual */
+    background: #0d1f35;
+    border-left: 2px solid #C5A880;
+    padding: 70px 16px 32px;
+
+    /* Stacking */
+    z-index: 1001;
+
+    /* Animation — transform only, NO filter, NO opacity changes */
+    transform: translateX(110%);
+    transition: transform 0.3s ease;
+    will-change: transform;
+
+    /* Text */
+    color: #ffffff;
+    font-size: 15.5px;
     font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+
+    /* No overflow blur artifacts */
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
-  /* Gold top accent bar + menu label */
-  .main-nav::before {
-    content: 'القائمة';
-    display: block;
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 11px;
-    color: var(--brand-gold);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 0 18px 18px;
-    border-bottom: 1px solid rgba(197, 168, 128, 0.2);
-    margin-bottom: 12px;
-    opacity: 0.9;
-  }
+
   html[dir="ltr"] .main-nav {
     right: auto;
     left: 0;
     border-left: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 6px 0 40px rgba(0, 0, 0, 0.35);
-    transform: translateX(-100%);
+    border-right: 2px solid #C5A880;
+    transform: translateX(-110%);
   }
+
+  /* Fully open state */
   .main-nav.active {
-    transform: translateX(0) !important;
+    transform: translateX(0);
   }
+
+  /* Nav Links */
   .main-nav a {
-    padding: 14px 18px;
-    border-radius: var(--radius-sm);
-    color: #ffffff !important;
-    font-size: 16px !important;
-    font-weight: 700 !important;
-    font-family: var(--font-display) !important;
+    display: block;
+    padding: 13px 16px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 15.5px;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     width: 100%;
     margin: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    transition: background 0.18s ease, color 0.18s ease, padding 0.18s ease;
-    letter-spacing: 0.3px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-    display: block;
-    line-height: 1.4;
+    /* Only transition background and color — NOT opacity or filter */
+    transition: background 0.15s ease, color 0.15s ease;
+    /* Prevent any inherited opacity issues */
+    opacity: 1 !important;
   }
-  .main-nav a:last-child {
+
+  .main-nav a:last-of-type {
     border-bottom: none;
   }
+
   .main-nav a:hover,
   .main-nav a.active {
-    background: rgba(197, 168, 128, 0.18);
-    color: var(--brand-gold) !important;
-    padding-right: 22px;
+    background: rgba(197, 168, 128, 0.15);
+    color: #C5A880;
   }
-  html[dir="ltr"] .main-nav a:hover,
-  html[dir="ltr"] .main-nav a.active {
-    padding-right: 18px;
-    padding-left: 22px;
-  }
+
+  /* Hide desktop underline effect */
   .main-nav a::after {
-    display: none;
+    display: none !important;
   }
-  /* Backdrop overlay */
+
+  /* Menu label at top */
+  .main-nav::before {
+    content: 'القائمة';
+    display: block;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+    font-size: 10px;
+    color: #C5A880;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(197, 168, 128, 0.18);
+    opacity: 0.85;
+  }
+
+  /* Backdrop — simple dark overlay, NO blur (prevents iOS/Chrome rendering bug) */
   .nav-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 997;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.32s ease;
-    backdrop-filter: blur(2px);
+    transition: opacity 0.3s ease;
+    /* NO backdrop-filter: blur — causes sibling blur artifacts on mobile */
   }
   .nav-backdrop.active {
     opacity: 1;
     pointer-events: auto;
   }
+
+  /* Hamburger toggle button — z-index ABOVE drawer */
   .menu-toggle {
     display: block;
     background: none;
     border: none;
     cursor: pointer;
     padding: 8px;
-    z-index: 1000;
+    z-index: 1002;
     position: relative;
+    flex-shrink: 0;
   }
   .menu-toggle span {
     display: block;
     width: 24px;
     height: 2px;
-    background-color: var(--brand-gold);
+    background-color: #C5A880;
     margin-block: 5px;
-    transition: transform 0.28s ease, opacity 0.28s ease;
+    transition: transform 0.25s ease, opacity 0.25s ease;
     transform-origin: center;
   }
   .menu-toggle.active span:nth-child(1) {
@@ -2026,6 +2052,12 @@ html[lang="en"] .testimonial-card,
   .menu-toggle.active span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
   }
+
+  /* Remove injected close button if it was rendered by old code */
+  .nav-close-btn {
+    display: none !important;
+  }
+
   .tel-link {
     display: none;
   }
@@ -2036,38 +2068,8 @@ html[lang="en"] .testimonial-card,
   .why-slider-images {
     height: 250px;
   }
-
-  /* زر الإغلاق داخل لوحة المنيو */
-  .nav-close-btn {
-    position: absolute;
-    top: 18px;
-    right: 20px;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(197, 168, 128, 0.12);
-    border: 1px solid rgba(197, 168, 128, 0.3);
-    border-radius: 8px;
-    color: var(--brand-gold);
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
-    z-index: 10;
-    flex-shrink: 0;
-  }
-  .nav-close-btn:hover {
-    background: rgba(197, 168, 128, 0.25);
-    transform: scale(1.1);
-  }
-  .nav-close-btn:active {
-    transform: scale(0.95);
-  }
-  html[dir="ltr"] .nav-close-btn {
-    right: auto;
-    left: 20px;
-  }
 }
+
 
 @media (max-width: 768px) {
   body {
@@ -2664,32 +2666,4 @@ body.nav-open { overflow: hidden; }
   .site-header, .btn, .about-card, .service-item-card,
   .timeline-step, .pest-card-premium, .testimonial-card,
   .detail-block, .faq-item, .faq-icon { transition: none !important; }
-}
-
-/* ==========================================================================
-   MOBILE MENU FINAL OVERRIDE — Highest specificity to guarantee visibility
-   ========================================================================== */
-@media (max-width: 991px) {
-  body .main-nav,
-  html body nav.main-nav {
-    color: #ffffff;
-    font-weight: 700;
-  }
-
-  body .main-nav a,
-  body .main-nav a:link,
-  body .main-nav a:visited {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    font-size: 16px !important;
-    font-family: 'Cairo', sans-serif !important;
-    opacity: 1 !important;
-    text-decoration: none !important;
-  }
-
-  body .main-nav a:hover,
-  body .main-nav a.active {
-    color: #C5A880 !important;
-    background: rgba(197, 168, 128, 0.18) !important;
-  }
 }
