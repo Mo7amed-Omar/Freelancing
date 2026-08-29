@@ -1919,6 +1919,10 @@ html[lang="en"] .testimonial-card,
     transform: translateX(100%);
     transition: transform 0.32s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow-y: auto;
+    /* إصلاح لون النص — يُبطل القيمة الموروثة من desktop */
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
   }
   /* Gold top accent bar + menu label */
   .main-nav::before {
@@ -1949,14 +1953,18 @@ html[lang="en"] .testimonial-card,
   .main-nav a {
     padding: 14px 18px;
     border-radius: var(--radius-sm);
-    color: #fff !important;
-    font-size: 16px;
-    font-weight: 700;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    font-family: var(--font-display) !important;
     width: 100%;
     margin: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    transition: background 0.18s ease, color 0.18s ease;
-    letter-spacing: 0.2px;
+    transition: background 0.18s ease, color 0.18s ease, padding 0.18s ease;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    display: block;
+    line-height: 1.4;
   }
   .main-nav a:last-child {
     border-bottom: none;
@@ -2656,4 +2664,32 @@ body.nav-open { overflow: hidden; }
   .site-header, .btn, .about-card, .service-item-card,
   .timeline-step, .pest-card-premium, .testimonial-card,
   .detail-block, .faq-item, .faq-icon { transition: none !important; }
+}
+
+/* ==========================================================================
+   MOBILE MENU FINAL OVERRIDE — Highest specificity to guarantee visibility
+   ========================================================================== */
+@media (max-width: 991px) {
+  body .main-nav,
+  html body nav.main-nav {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  body .main-nav a,
+  body .main-nav a:link,
+  body .main-nav a:visited {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    font-family: 'Cairo', sans-serif !important;
+    opacity: 1 !important;
+    text-decoration: none !important;
+  }
+
+  body .main-nav a:hover,
+  body .main-nav a.active {
+    color: #C5A880 !important;
+    background: rgba(197, 168, 128, 0.18) !important;
+  }
 }
