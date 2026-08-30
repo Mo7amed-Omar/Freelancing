@@ -2641,8 +2641,9 @@ html[lang="en"] .testimonial-card,
 .form-error-msg { display: none; font-size: 12px; color: var(--danger); margin-top: 4px; font-weight: 600; }
 .form-group.has-error .form-error-msg { display: block; }
 
-/* ===== 11. Body Scroll Lock ===== */
+/* ===== 11. Body Scroll Lock & Stacking Context Fix ===== */
 body.nav-open { overflow: hidden; }
+body.nav-open .site-header { z-index: 1005 !important; }
 
 /* ===== 12. Mobile Trust Indicators Center ===== */
 @media (max-width: 600px) {
