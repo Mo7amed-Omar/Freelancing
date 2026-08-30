@@ -976,32 +976,34 @@ function initMobileMenu() {
   mainNav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href") || "";
+      const currentFilename = window.location.pathname.split("/").pop() || "index.html";
 
-      // Determine if this is a hash-only link (same page scroll)
-      const isHashOnly = href.startsWith("#");
-      // Determine if this is a cross-page link with hash (e.g. index.html#pests)
-      const hasCrossPageHash = href.includes("#") && !isHashOnly;
-      // Determine if pure page link (no hash)
-      const isPageLink = !href.includes("#") && href.length > 0;
+      // Parse target path and hash from link href
+      const targetHash = href.includes("#") ? href.substring(href.indexOf("#")) : "";
+      const targetPath = href.split("#")[0];
+      const targetFilename = targetPath.split("/").pop() || "index.html";
 
-      if (isHashOnly) {
-        // Same-page scroll: close menu, browser handles scroll naturally
+      // Check if target is a section on the CURRENT page
+      const isSamePage = (targetFilename === currentFilename || 
+                          (currentFilename === "index.html" && targetFilename === "") ||
+                          (currentFilename === "" && targetFilename === "index.html") ||
+                          href.startsWith("#"));
+
+      if (targetHash && isSamePage) {
+        // It's a section on the same page: prevent default jump, close menu first, then smooth scroll
+        e.preventDefault();
         closeMenu();
-        // Smooth scroll to target
-        const target = document.querySelector(href);
+        const target = document.querySelector(targetHash);
         if (target) {
-          e.preventDefault();
-          closeMenu();
           setTimeout(() => {
             target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }, 100);
+          }, 320); // 320ms delay allows the menu sliding transition to finish smoothly
         }
-        return;
+      } else {
+        // It's a different page or full page reload link (e.g. about.html or contact.html)
+        // DO NOT call closeMenu() or do any DOM mutations on the current page.
+        // Let the browser navigate naturally. Since it's a new page load, it will start with menu closed.
       }
-
-      // For cross-page links or pure page links: close menu first, then navigate
-      // We do NOT preventDefault — browser navigation must proceed
-      closeMenu();
     });
   });
 }
