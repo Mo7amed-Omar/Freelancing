@@ -2667,3 +2667,41 @@ body.nav-open { overflow: hidden; }
   .timeline-step, .pest-card-premium, .testimonial-card,
   .detail-block, .faq-item, .faq-icon { transition: none !important; }
 }
+/* === PORTFOLIO SECTION - أعمالنا السابقة === */
+.portfolio-section{background:var(--surface)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:52px}
+.portfolio-card{position:relative;background:#fff;border-radius:var(--radius-md);overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:transform .28s ease,box-shadow .28s ease;display:flex;flex-direction:column}
+.portfolio-card:hover{transform:translateY(-6px);box-shadow:0 14px 44px rgba(0,0,0,.14)}
+.portfolio-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:repeating-linear-gradient(-45deg,#1a2a3a 0px,#1a2a3a 8px,#C5A880 8px,#C5A880 16px);opacity:0;transition:opacity .25s ease;z-index:10}
+.portfolio-card:hover::before{opacity:1}
+.portfolio-img-wrap{position:relative;overflow:hidden;height:200px}
+.portfolio-img{width:100%;height:100%;transition:transform .42s ease;background-size:cover;background-position:center}
+.portfolio-card:hover .portfolio-img{transform:scale(1.07)}
+.portfolio-img--factory{background:linear-gradient(135deg,#0f2335 0%,#2c4a6e 50%,#1e3a5f 100%)}
+.portfolio-img--hospital{background:linear-gradient(160deg,#bee3f8 0%,#4299e1 60%,#2b6cb0 100%)}
+.portfolio-img--hotel{background:linear-gradient(135deg,#2d1b00 0%,#c5a132 60%,#8b6914 100%)}
+.portfolio-img--government{background:linear-gradient(135deg,#1a1f2e 0%,#2d3561 50%,#4a5568 100%)}
+.portfolio-img--pharma{background:linear-gradient(135deg,#c6f6d5 0%,#68d391 50%,#276749 100%)}
+.portfolio-img--restaurant{background:linear-gradient(135deg,#2d1500 0%,#dd6b20 55%,#c05621 100%)}
+.portfolio-img--compound{background:linear-gradient(135deg,#1a2e1a 0%,#48bb78 55%,#276749 100%)}
+.portfolio-badge{position:absolute;top:14px;right:14px;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;font-family:var(--font-display);z-index:5}
+.portfolio-badge--industry{background:rgba(26,42,58,.88);color:#C5A880;border:1px solid rgba(197,168,128,.4)}
+.portfolio-badge--health{background:rgba(43,108,176,.88);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.portfolio-badge--hospitality{background:rgba(139,105,20,.88);color:#fff;border:1px solid rgba(255,215,0,.3)}
+.portfolio-badge--gov{background:rgba(45,53,97,.88);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.portfolio-badge--residential{background:rgba(39,103,73,.88);color:#fff;border:1px solid rgba(104,211,145,.3)}
+.portfolio-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,25,47,.93) 0%,rgba(10,25,47,.45) 55%,transparent 100%);display:flex;align-items:flex-end;padding:18px 16px;opacity:0;transition:opacity .28s ease;z-index:4}
+.portfolio-overlay p{color:rgba(255,255,255,.93);font-size:13px;line-height:1.55;margin:0;font-family:var(--font-display);transform:translateY(8px);transition:transform .3s ease}
+.portfolio-card:hover .portfolio-overlay{opacity:1}
+.portfolio-card:hover .portfolio-overlay p{transform:translateY(0)}
+.portfolio-body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:7px;flex:1}
+.portfolio-icon{color:var(--brand-gold);margin-bottom:2px}
+.portfolio-title{font-family:var(--font-display);font-weight:800;font-size:16px;color:var(--brand-navy);margin:0;line-height:1.3}
+.portfolio-desc{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.55}
+.portfolio-stat{margin-top:auto;padding-top:14px;border-top:1px solid rgba(0,0,0,.07);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.portfolio-stat-num{font-family:var(--font-display);font-weight:900;font-size:26px;color:var(--brand-gold);line-height:1}
+.portfolio-stat-label{font-size:12.5px;color:var(--ink-soft);line-height:1.35}
+.portfolio-cta{margin-top:52px;padding:36px 40px;background:linear-gradient(135deg,var(--brand-navy) 0%,#1e3a5f 100%);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+.portfolio-cta p{color:rgba(255,255,255,.92);font-family:var(--font-display);font-weight:700;font-size:18px;margin:0}
+@media(max-width:1024px){.portfolio-grid{grid-template-columns:repeat(2,1fr);gap:22px}}
+@media(max-width:640px){.portfolio-grid{grid-template-columns:1fr;gap:18px}.portfolio-img-wrap{height:170px}.portfolio-cta{flex-direction:column;gap:16px;padding:26px 20px}.portfolio-cta p{font-size:16px}}

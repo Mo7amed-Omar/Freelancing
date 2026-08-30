@@ -972,9 +972,37 @@ function initMobileMenu() {
     }
   });
 
-  // Close on nav link click
+  // Close menu on nav link click — robust mobile-safe implementation
   mainNav.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", closeMenu);
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href") || "";
+
+      // Determine if this is a hash-only link (same page scroll)
+      const isHashOnly = href.startsWith("#");
+      // Determine if this is a cross-page link with hash (e.g. index.html#pests)
+      const hasCrossPageHash = href.includes("#") && !isHashOnly;
+      // Determine if pure page link (no hash)
+      const isPageLink = !href.includes("#") && href.length > 0;
+
+      if (isHashOnly) {
+        // Same-page scroll: close menu, browser handles scroll naturally
+        closeMenu();
+        // Smooth scroll to target
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          closeMenu();
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 100);
+        }
+        return;
+      }
+
+      // For cross-page links or pure page links: close menu first, then navigate
+      // We do NOT preventDefault — browser navigation must proceed
+      closeMenu();
+    });
   });
 }
 
