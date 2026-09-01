@@ -2706,3 +2706,287 @@ body.nav-open .site-header { z-index: 1005 !important; }
 .portfolio-cta p{color:rgba(255,255,255,.92);font-family:var(--font-display);font-weight:700;font-size:18px;margin:0}
 @media(max-width:1024px){.portfolio-grid{grid-template-columns:repeat(2,1fr);gap:22px}}
 @media(max-width:640px){.portfolio-grid{grid-template-columns:1fr;gap:18px}.portfolio-img-wrap{height:170px}.portfolio-cta{flex-direction:column;gap:16px;padding:26px 20px}.portfolio-cta p{font-size:16px}}
+
+/* ==========================================================================
+   FOOTER ENHANCEMENTS: Address Link & Regional Branches Presence
+   ========================================================================== */
+.footer-address-link {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.82) !important;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.footer-address-link:hover {
+  color: var(--brand-gold) !important;
+  transform: translateX(-2px);
+}
+html[dir="ltr"] .footer-address-link:hover {
+  transform: translateX(2px);
+}
+.footer-address-link svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--brand-gold);
+}
+
+.footer-branches-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 8px;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.footer-branches-label {
+  color: var(--brand-gold);
+  font-weight: 800;
+  font-family: var(--font-display);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.footer-branches-list {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   CONTACT PAGE: Map Integration & Interactive Address Link
+   ========================================================================== */
+.contact-address-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.map-link-btn {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.map-link-btn:hover {
+  color: var(--primary);
+}
+.map-link-btn .map-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand-blue);
+  background: rgba(197, 168, 128, 0.18);
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-top: 4px;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+.map-link-btn:hover .map-badge {
+  background: var(--brand-gold);
+  color: var(--brand-navy);
+  transform: scale(1.03);
+}
+
+/* Embedded Google Map Card */
+.contact-map-section {
+  margin-top: 48px;
+}
+.map-card-wrapper {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, var(--brand-navy) 0%, #172A45 100%);
+  color: #fff;
+  flex-wrap: wrap;
+}
+.map-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.map-pin-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--brand-gold);
+  font-weight: 800;
+  font-size: 15px;
+  font-family: var(--font-display);
+}
+.map-header-info p {
+  margin: 0;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.btn-map-direct {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: var(--brand-gold);
+  color: var(--brand-navy);
+  font-weight: 700;
+  font-size: 13.5px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.btn-map-direct:hover {
+  background: #d8bd98;
+  transform: translateY(-2px);
+}
+.map-iframe-container {
+  width: 100%;
+  height: 380px;
+  background: #e5e3df;
+  position: relative;
+}
+.map-iframe-container iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ==========================================================================
+   REGIONAL PRESENCE / BRANCHES SECTION
+   ========================================================================== */
+.branches-section {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid var(--line);
+}
+.branches-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 32px;
+}
+.branch-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.branch-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--brand-gold);
+}
+.branch-card--hq {
+  border: 2px solid var(--brand-gold);
+  background: linear-gradient(180deg, rgba(197, 168, 128, 0.06) 0%, #fff 40%);
+}
+.branch-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.branch-flag {
+  font-size: 32px;
+  line-height: 1;
+}
+.branch-badge {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(10, 25, 47, 0.08);
+  color: var(--brand-blue);
+  border: 1px solid rgba(10, 25, 47, 0.12);
+}
+.branch-badge--hq {
+  background: var(--brand-gold);
+  color: var(--brand-navy);
+  border-color: var(--brand-gold);
+}
+.branch-country {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--brand-navy);
+  margin: 0;
+  line-height: 1.35;
+}
+.branch-desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.55;
+  flex: 1;
+}
+.branch-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.branch-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #25a244;
+  box-shadow: 0 0 0 3px rgba(37, 162, 68, 0.2);
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .branches-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+@media (max-width: 640px) {
+  .branches-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .map-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btn-map-direct {
+    width: 100%;
+    justify-content: center;
+  }
+  .map-iframe-container {
+    height: 280px;
+  }
+}
+

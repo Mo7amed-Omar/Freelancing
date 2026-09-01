@@ -135,12 +135,17 @@
             </div>
           </div>
 
-          <!-- العنوان -->
+          <!-- العنوان والمقر الرئيسي -->
           <div class="contact-info-item">
-            <div class="info-icon">📍</div>
-            <div class="info-text">
-              <strong data-i18n="footerAddress">العنوان</strong>
-              <p style="margin: 0;" data-i18n="footerAddress">مصر الجديدة، القاهرة، مصر</p>
+            <div class="info-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="info-text contact-address-box">
+              <strong data-i18n="contactAddressTitle">العنوان والمقر الرئيسي</strong>
+              <a href="https://maps.app.goo.gl/ZysrpDrvLk2iPPWg7" target="_blank" rel="noopener" class="map-link-btn" title="افتح في خرائط Google">
+                <span data-i18n="mainAddressText">كمبوند لايك فرونت 4001، حدائق أكتوبر، الجيزة، مصر</span>
+                <span class="map-badge" data-i18n="openInMaps">عرض الخريطة ↗</span>
+              </a>
             </div>
           </div>
 
@@ -155,6 +160,105 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="container">
+      <!-- خريطة الموقع التفاعلية (Embedded Google Map) -->
+      <div class="contact-map-section reveal">
+        <div class="map-card-wrapper">
+          <div class="map-header">
+            <div class="map-header-info">
+              <div class="map-pin-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span data-i18n="mapHeadquarterTitle">المقر الرئيسي — الجيزة، مصر</span>
+              </div>
+              <p data-i18n="mainAddressText">كمبوند لايك فرونت 4001، حدائق أكتوبر، الجيزة، مصر</p>
+            </div>
+            <a href="https://maps.app.goo.gl/ZysrpDrvLk2iPPWg7" target="_blank" rel="noopener" class="btn-map-direct" data-i18n="openInGoogleMaps">
+              فتح في خرائط Google ↗
+            </a>
+          </div>
+          <div class="map-iframe-container">
+            <iframe 
+              src="https://maps.google.com/maps?q=Lake+Front+Compound+October+Gardens+Giza+Egypt&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+              width="100%" 
+              height="380" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="موقع الشركة الألمانية المتقدمة على خرائط Google">
+            </iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== قسم الفروع والتواجد الإقليمي (Regional Presence) ===== -->
+      <section class="branches-section reveal">
+        <div class="section-header text-center" style="margin-bottom: 28px;">
+          <span class="section-eyebrow" data-i18n="branchesEyebrow">شبكة الفروع</span>
+          <h2 class="section-title" data-i18n="branchesTitle">تواجدنا الإقليمي والدولي</h2>
+          <p class="section-lead" data-i18n="branchesSubtitle">خدماتنا المعتمدة تمتد عبر شبكة فروعنا وشراكاتنا في الشرق الأوسط وشمال أفريقيا</p>
+        </div>
+
+        <div class="branches-grid">
+          <!-- مصر (المقر الرئيسي) -->
+          <div class="branch-card branch-card--hq">
+            <div class="branch-card-header">
+              <div class="branch-flag">🇪🇬</div>
+              <span class="branch-badge branch-badge--hq" data-i18n="badgeHQ">المقر الرئيسي</span>
+            </div>
+            <h3 class="branch-country" data-i18n="countryEgypt">جمهورية مصر العربية</h3>
+            <p class="branch-desc" data-i18n="branchEgyptDesc">كمبوند لايك فرونت 4001، حدائق أكتوبر، الجيزة</p>
+            <div class="branch-meta">
+              <span class="branch-status-dot"></span>
+              <span data-i18n="branchActiveService">خدمة فورية وشاملة 24/7</span>
+            </div>
+          </div>
+
+          <!-- المملكة العربية السعودية -->
+          <div class="branch-card">
+            <div class="branch-card-header">
+              <div class="branch-flag">🇸🇦</div>
+              <span class="branch-badge" data-i18n="badgeBranch">فرع إقليمي</span>
+            </div>
+            <h3 class="branch-country" data-i18n="countryKSA">المملكة العربية السعودية</h3>
+            <p class="branch-desc" data-i18n="branchKSADesc">خدمات متخصصة للمنشآت الصناعية، المستودعات والقطاع التجاري</p>
+            <div class="branch-meta">
+              <span class="branch-status-dot"></span>
+              <span data-i18n="branchActiveService">عقود مؤسسية ومشاريع</span>
+            </div>
+          </div>
+
+          <!-- الإمارات العربية المتحدة -->
+          <div class="branch-card">
+            <div class="branch-card-header">
+              <div class="branch-flag">🇦🇪</div>
+              <span class="branch-badge" data-i18n="badgeBranch">فرع إقليمي</span>
+            </div>
+            <h3 class="branch-country" data-i18n="countryUAE">الإمارات العربية المتحدة</h3>
+            <p class="branch-desc" data-i18n="branchUAEDesc">حلول ومعايير معتمدة لقطاع الضيافة، الفنادق والشركات الكبرى</p>
+            <div class="branch-meta">
+              <span class="branch-status-dot"></span>
+              <span data-i18n="branchActiveService">عقود صيانة ومتابعة</span>
+            </div>
+          </div>
+
+          <!-- دولة ليبيا -->
+          <div class="branch-card">
+            <div class="branch-card-header">
+              <div class="branch-flag">🇱🇾</div>
+              <span class="branch-badge" data-i18n="badgeBranch">فرع إقليمي</span>
+            </div>
+            <h3 class="branch-country" data-i18n="countryLibya">دولة ليبيا</h3>
+            <p class="branch-desc" data-i18n="branchLibyaDesc">بروتوكولات مكافحة متكاملة للمواقع والمنشآت السكنية والتجارية</p>
+            <div class="branch-meta">
+              <span class="branch-status-dot"></span>
+              <span data-i18n="branchActiveService">تغطية مشاريع متكاملة</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -198,8 +302,20 @@
             <a href="tel:01150087555">📞 01150087555</a>
             <a href="https://wa.me/201150087555" target="_blank" rel="noopener">💬 WhatsApp: 01150087555</a>
             <p data-i18n="footerPhones">الهواتف الإضافية: 01002570405 / 01002577216</p>
-            <p data-i18n="footerAddress">العنوان: مصر الجديدة، القاهرة، مصر</p>
+            <a href="https://maps.app.goo.gl/ZysrpDrvLk2iPPWg7" target="_blank" rel="noopener" class="footer-address-link" title="عرض الموقع على خرائط Google">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span data-i18n="footerAddress">العنوان: كمبوند لايك فرونت 4001، حدائق أكتوبر، الجيزة، مصر</span>
+            </a>
           </div>
+        </div>
+
+        <!-- شريط التواجد الإقليمي في الفوتر -->
+        <div class="footer-branches-row">
+          <span class="footer-branches-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span data-i18n="footerBranchesLabel">فروعنا:</span>
+          </span>
+          <span class="footer-branches-list" data-i18n="footerBranchesList">🇪🇬 مصر (المقر الرئيسي) • 🇸🇦 السعودية • 🇦🇪 الإمارات • 🇱🇾 ليبيا</span>
         </div>
       </div>
     </div>
